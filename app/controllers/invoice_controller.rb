@@ -25,7 +25,6 @@ class InvoiceController < ApplicationController
       flash[:notice] = "Invoice created"
       redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
     else
-      flash[:notice] = "Error"
       render :action => 'new', :id => params[:id]
     end    
       
@@ -37,7 +36,6 @@ class InvoiceController < ApplicationController
       flash[:notice] = "Invoice saved"
       redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
     else
-      flash[:notice] = "Error"
       render :action => 'edit', :id => params[:id], :invoice => { :id => @invoice }
     end    
   end
