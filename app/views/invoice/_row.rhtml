@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= link_to h(row.invoice_number), :action => 'show' %>
+  </td>
+  <td>
+    <%= h row.invoiced_on.strftime('%B %d, %Y') %>
+  </td>
+  <td>
+    <%= h row.customer.name %>
+  </td>
+  <td>
+    <%= h number_to_currency(row.amount, :unit => @settings['invoice_currency_symbol']) %>
+  </td>
+</tr>

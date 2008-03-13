@@ -19,4 +19,12 @@ Redmine::Plugin.register :invoice_plugin do
     'invoice_currency_symbol' => '$',
     'invoice_payment_terms' => '30'
   }, :partial => 'settings/settings'
+  
+  project_module :invoice_module do
+    permission :show_invoices, { :invoice => [:index, :show]}
+    permission :edit_invoices, { :invoice => [:new, :edit, :save, :update]}
+    permission :delete_invoices, { :invoice => [:destroy]}
+  end
+  
+  menu :project_menu, "Invoices", :controller => 'invoice', :action => 'index'
 end
