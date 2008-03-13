@@ -1,13 +1,22 @@
 # Empty redmine plguin
 require 'redmine'
 
-# TODO: Change this to use the name of your plugin
-RAILS_DEFAULT_LOGGER.info 'Starting Empty plugin for RedMine'
+RAILS_DEFAULT_LOGGER.info 'Starting Invoice plugin for RedMine'
 
 # TODO: Change the name 
-Redmine::Plugin.register :empty_plugin do
-  name 'Empty plugin'
+Redmine::Plugin.register :invoice_plugin do
+  name 'Invoice plugin'
   author 'Eric Davis'
-  description 'This is an empty plugin for Redmine that is used to start new plugins'
-  version '0.0.0'
+  description 'Redmine plugin to create and manage invoices'
+  version '0.0.1'
+
+  settings:default => {
+    'invoice_company_name' => 'Your Company Name',
+    'invoice_company_address' => '100 Address',
+    'invoice_company_email' => 'email@example.com',
+    'invoice_company_website' => 'http://www.example.com',
+    'invoice_foot_note' => 'Thank you for your business',
+    'invoice_currency_symbol' => '$',
+    'invoice_payment_terms' => '30'
+  }, :partial => 'settings/settings'
 end

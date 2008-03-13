@@ -1,0 +1,33 @@
+<fieldset>
+<legend>Company settings</legend>
+<p>
+  <label>Name</label><%= text_field_tag 'settings[invoice_company_name]', @settings['invoice_company_name'], :size => 50 %>
+</p>
+
+<p>
+  <label>Address</label><%= text_area_tag 'settings[invoice_company_address]', @settings['invoice_company_address'], :rows => 5, :cols => 50 %>
+</p>
+
+<p>
+  <label>Email</label><%= text_field_tag 'settings[invoice_company_email]', @settings['invoice_company_email'], :size => 50 %>
+</p>
+
+<p>
+  <label>Website</label><%= text_field_tag 'settings[invoice_company_website]', @settings['invoice_company_website'], :size => 50 %>
+</p>
+</fieldset>
+
+<fieldset>
+<legend>Invoice settings</legend>
+<p>
+  <label>Footnote</label><%= text_area_tag 'settings[invoice_foot_note]', @settings['invoice_foot_note'], :rows => 5, :cols => 50 %>
+</p>
+
+<p>
+  <label>Currency Symbol</label><%= text_field_tag 'settings[invoice_currency_symbol]', @settings['invoice_currency_symbol'], :size => 5 %>
+</p>
+
+<p>
+  <label>Payment Terms (days)</label><%= text_field_tag 'settings[invoice_payment_terms]', @settings['invoice_payment_terms'], :size => 5 %>
+</p>
+</fieldset>
