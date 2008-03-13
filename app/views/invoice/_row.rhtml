@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= link_to h(row.invoice_number), :action => 'show' %>
+    <%= link_to h(row.invoice_number), :action => 'show', :id => @project, :invoice_id => row %>
   </td>
   <td>
     <%= h row.invoiced_on.strftime('%B %d, %Y') %>

@@ -1,0 +1,22 @@
+<h1>Invoice <%= h @invoice.invoice_number -%></h1>
+
+<div id="invoiced_on">
+  <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %>
+</div>
+
+<div id="customer">
+  <h3><%= h @invoice.customer.company -%></h3>
+  <p>
+    <%= h @invoice.customer.name -%><br />
+    <%= h @invoice.customer.address -%><br />
+    <%= h @invoice.customer.phone -%><br />
+    <%= h @invoice.customer.website -%>
+  </p>
+</div>
+
+<h3>Description</h3>
+<div id="invoice-description">
+  <%= @invoice.description_html %>
+</div>
+
+<%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice_id => @invoice %>
