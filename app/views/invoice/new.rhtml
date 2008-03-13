@@ -1,0 +1,9 @@
+<h1>New Invoice</h1>
+
+<% form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>
+
+<%= render(:partial => 'form', :object => form) %>
+
+<p><%= form.submit "Create" %></p>
+
+<% end %>

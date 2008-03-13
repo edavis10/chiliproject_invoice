@@ -1,5 +1,7 @@
 <h1>Invoices</h1>
 
+<%= link_to 'New Invoice', :action => 'new', :id => @project %>
+
 <table id="invoices">
   <tr>
     <th>Invoice Number</th>
@@ -9,3 +11,4 @@
   </tr>
   <%= render :partial => 'row', :collection => @invoices %>
 </table>
+

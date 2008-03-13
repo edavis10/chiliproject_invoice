@@ -2,6 +2,8 @@
 
 <% form_for(:invoice, @invoice, :url => { :action => 'update', :id => @project}) do |form| %>
 
+<%= form.hidden_field 'id' -%>
+
 <%= render(:partial => 'form', :object => form) %>
 
 <p><%= form.submit "Update" %></p>

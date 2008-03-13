@@ -1,4 +1,9 @@
 <p>
+  <%= form.label :invoice_number %>
+  <%= form.text_field :invoice_number %>
+</p>
+
+<p>
   <%= form.label :customer_id %>
   <%= form.select :customer_id, Customer.find(:all).collect { |c| ["#{c.company} - #{c.name}", c.id]} %>
 </p>
@@ -19,4 +24,3 @@
   <%= wikitoolbar_for 'invoice_description' %>
 </p>
 
-<%= form.hidden_field 'id' -%>

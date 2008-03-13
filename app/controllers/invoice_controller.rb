@@ -19,10 +19,10 @@ class InvoiceController < ApplicationController
     @invoice = Invoice.find(params[:invoice][:id])
   end
   
-  def save
-    @invoice = Invoice.new(params[:invoice][:id])
+  def create
+    @invoice = Invoice.new(params[:invoice])
     if @invoice.save
-      flash[:notice] = "Invoice saved"
+      flash[:notice] = "Invoice created"
       redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
     else
       flash[:notice] = "Error"
