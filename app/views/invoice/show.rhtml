@@ -19,4 +19,4 @@
   <%= @invoice.description_html %>
 </div>
 
-<%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice_id => @invoice %>
+<%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>

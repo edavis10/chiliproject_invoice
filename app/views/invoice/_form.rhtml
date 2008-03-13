@@ -1,0 +1,21 @@
+<p>
+  <%= form.label :customer_id %>
+  <%= form.select :customer_id, Customer.find(:all).collect { |c| ["#{c.company} - #{c.name}", c.id]} %>
+</p>
+
+<p>
+  <%= form.label :invoiced_on %>
+  <%= form.date_select :invoiced_on %>
+</p>
+  
+<p>
+  <%= form.label :amount %>
+  <%= form.text_field :amount %>
+</p>
+
+<p>
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+</p>
+
+<%= form.hidden_field 'id' -%>

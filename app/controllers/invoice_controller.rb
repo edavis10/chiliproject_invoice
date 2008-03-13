@@ -12,18 +12,18 @@ class InvoiceController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(params[:invoice][:id])
   end
   
   def edit
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(params[:invoice][:id])
   end
   
   def save
-    @invoice = Invoice.new(params[:invoice_id])
+    @invoice = Invoice.new(params[:invoice][:id])
     if @invoice.save
       flash[:notice] = "Invoice saved"
-      redirect_to :action => "show", :id => params[:id], :invoice_id => @invoice
+      redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
     else
       flash[:notice] = "Error"
       render :action => 'new', :id => params[:id]
@@ -32,18 +32,18 @@ class InvoiceController < ApplicationController
   end
   
   def update
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(params[:invoice][:id])
     if @invoice.update_attributes(params[:invoice])
       flash[:notice] = "Invoice saved"
-      redirect_to :action => "show", :id => params[:id], :invoice_id => params[:invoice_id]
+      redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
     else
       flash[:notice] = "Error"
-      render :action => 'edit', :id => params[:id], :invoice_id => params[:invoice_id]
+      render :action => 'edit', :id => params[:id], :invoice => { :id => @invoice }
     end    
   end
   
   def destroy
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(params[:invoice][:id])
     if @invoice.destroy
       flash[:notice] = "Invoice deleted"
       redirect_to :action => "index", :id => params[:id]
