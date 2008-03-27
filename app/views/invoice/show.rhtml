@@ -1,7 +1,7 @@
 <div id="invoice">
   <div id="invoice-meta">
     <p id="invoice-number">Invoice #<%= h @invoice.invoice_number -%></p>
-    <p><%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
+    <p class="date"><%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
   </div>
 
   <div id="company">
