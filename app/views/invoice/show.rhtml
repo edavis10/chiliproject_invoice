@@ -45,8 +45,12 @@
 
 <hr />
 
-<%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
+<div class="nonprinting">
+  <%= link_to 'Printable view', :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>
+  <%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
+</div>
 
 <% content_for :header_tags do %>
-  <%= stylesheet_link_tag "invoice.css", :plugin => "invoice_plugin"%>
+  <%= stylesheet_link_tag "invoice.css", :plugin => "invoice_plugin", :media => 'all' %>
+  <%= stylesheet_link_tag "invoice_print.css", :plugin => "invoice_plugin", :media => 'print' %>
 <% end %>

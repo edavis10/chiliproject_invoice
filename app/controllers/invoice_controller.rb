@@ -13,6 +13,7 @@ class InvoiceController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:invoice][:id])
+    render :layout => 'print' if params[:print]
   end
   
   def edit

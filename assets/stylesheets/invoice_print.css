@@ -1,0 +1,2 @@
+/* Hide all the non printing elements */
+.nonprinting { display:none; }
