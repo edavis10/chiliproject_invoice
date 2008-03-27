@@ -1,0 +1,12 @@
+div#invoice-meta {  }
+div#company { float:right; }
+div#customer {  }
+div#invoice-description { }
+div#amount {  }
+div#payment-terms {  }
+div#foot-note { margin: 20px 0px; }
+div.clear { clear:both; }
+
+#invoice-number { font-weight: bold; }
+
+div#amount p { font-weight: bold; }
