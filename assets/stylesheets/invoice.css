@@ -2,12 +2,14 @@ div#invoice {  }
 div#invoice-meta {  }
 div#company { float:right; }
 div#customer {  }
-div#invoice-description { }
+div#invoice-description {margin: 30px 0; padding: 10px; background: #EEEEEE; border: 1px solid #CCCCCC;}
 div#amount {  }
 div#payment-terms {  }
-div#foot-note { margin: 20px 0px; }
+div#foot-note { margin: 20px 0; padding: 10px; border: 1px solid #CCCCCC; }
 div.clear { clear:both; }
 
-#invoice-number { font-weight: bold; }
+#invoice-number { font-weight: bold; font-size: large; }
 
 div#amount p { font-weight: bold; }
+div#customer p, div#company p { margin:0; padding:0; }
+div#customer h3, div#company h3 { font-size:large; }
