@@ -2,36 +2,35 @@
 
 <h1>New Invoice from Data</h1>
 
-<% form_for(:autofill, { }, :url => { :action => 'autofill', :id => @project}) do |form| %>
+<% labelled_tabular_form_for(:autofill, @autofill, :url => { :action => 'autofill', :id => @project}) do |form| %>
 
 <fieldset>
 <legend>Auto Fill</legend>
 <p>
-  <label for="autofill[project]">Project:</label><br />
-  <%= collection_select :autofill, :project_id, (Project.find(:all, :order => 'name ASC')), :id, :name %>
-</p>
-
-<fieldset>
-<legend>Date Range</legend>
-  <label for="timesheet_date_from">From:</label>
-  <%= text_field :autofill, "date_from", :size => 10 %><%= calendar_for('autofill_date_from') %>
-  <label for="timesheet_date_to">To:</label>
-  <%= text_field :autofill, "date_to", :size => 10 %><%= calendar_for('autofill_date_to') %>
-</fieldset>
-
-
-<p><label for="timesheet[activities][]"><%= l(:timesheet_activities_label)%>:</label><br />
-<%= select_tag 'autofill[activities][]',
-    options_from_collection_for_select(Enumeration::get_values('ACTI'), :id, :name),
-    { :multiple => true, :size => 5} %>
+  <%= form.label :project_id %>
+  <%= form.collection_select :project_id, (Project.find(:all, :order => 'name ASC')), :id, :name %>
 </p>
 
 <p>
-  <%= form.label :rate %>
-  <%= text_field :autofill, 'rate', :size => 6 %>
+  <%= form.text_field "date_from", :size => 10 %><%= calendar_for('autofill_date_from') %>
 </p>
 
-<%= submit_to_remote 'autofill', 'Autofill', :url => { :action => 'autofill', :id => @project } %>
+<p>
+  <%= form.text_field "date_to", :size => 10 %><%= calendar_for('autofill_date_to') %>
+</p>
+
+<p>
+<%= label :autofill, :activities %>
+<%= select_tag 'autofill[activities][]',
+    options_from_collection_for_select(Enumeration::get_values('ACTI'), :id, :name),
+    { :multiple => true, :size => 5 } %>
+</p>
+
+<p>
+  <%= form.text_field 'rate', :size => 6 %>
+</p>
+
+<p><%= submit_to_remote 'autofill', 'Autofill', :url => { :action => 'autofill', :id => @project } %></p>
 
 </fieldset>
 <% end %>

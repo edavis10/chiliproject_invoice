@@ -14,6 +14,8 @@ class InvoiceController < ApplicationController
 
   def autocreate
     @invoice = Invoice.new    
+    @autofill = Autofill.new
+    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
   end
 
   def show
