@@ -9,6 +9,7 @@ class InvoiceController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
   end
 
   def autocreate
@@ -22,6 +23,7 @@ class InvoiceController < ApplicationController
   
   def edit
     @invoice = Invoice.find(params[:invoice][:id])
+    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
   end
   
   def create
