@@ -56,14 +56,6 @@ class InvoiceController < ApplicationController
     end
   end
   
-  def project_change
-    project = Project.find_by_id(params[:project_id])
-    @customer = Customer.find_by_id(project.customer_id) # Customer plugin only has a 1-way relationship
-    respond_to do |format|
-      format.js
-    end
-  end
-  
   def autofill
     # Get project
     project = Project.find_by_id(params[:autofill][:project_id])

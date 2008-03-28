@@ -22,7 +22,7 @@ Redmine::Plugin.register :invoice_plugin do
   
   project_module :invoice_module do
     permission :show_invoices, { :invoice => [:index, :show]}
-    permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :project_change, :autofill]}
+    permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :autofill]}
     permission :delete_invoices, { :invoice => [:destroy]}
   end
   

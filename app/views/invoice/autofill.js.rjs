@@ -7,5 +7,9 @@ end
 page['invoice_description'].value = description
 
 # Customer
-page['invoice_customer_id'].value = @customer.id
-page.replace_html 'customer_name', h(@customer.name)
+if @customer.blank?
+  page.alert "That project does not have a customer, please set one before continuing"
+else
+  page['invoice_customer_id'].value = @customer.id
+  page.replace_html 'customer_name', h(@customer.name)
+end

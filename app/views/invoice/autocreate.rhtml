@@ -70,10 +70,6 @@
 </fieldset>
 <% end %>
 
-<%= observe_field :autofill_project_id, :url => { :controller => :invoice, :action => 'project_change', :id => @project },
-      :with => 'project_id'
-      %>
-
 <% content_for :header_tags do %>
     <%= javascript_include_tag 'calendar/calendar' %>
     <%= javascript_include_tag "calendar/lang/calendar-#{current_language}.js" %>
