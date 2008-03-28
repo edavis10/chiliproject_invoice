@@ -10,6 +10,12 @@ description << "h3. Work Completed\n\n"
   description << "* #{issue.subject} (#{issue.status} ##{issue.id})\n"
 end
 
+# Total time
+description << "\n"
+description << "Total billable time: " + pluralize(@total_time, "hour")
+
+description << " (" + h(@date_from) + " to " + h(@date_to) + ")"
+
 page['invoice_description'].value = description
 
 # Customer
