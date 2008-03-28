@@ -36,38 +36,12 @@
 </fieldset>
 <% end %>
 
-<% form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>
-<fieldset>
-<legend>Invoice</legend>
-<p>
-  <%= form.label :invoice_number %>
-  <%= form.text_field :invoice_number %>
-</p>
+<% labelled_tabular_form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>
 
-<p>
-  <%= form.hidden_field :customer_id %>
-  Customer: <span id="customer_name"></span>
-</p>
-
-<p>
-  <%= form.label :invoiced_on %>
-  <%= form.date_select :invoiced_on %>
-</p>
-  
-<p>
-  <%= form.label :amount %>
-  <%= form.text_field :amount %>
-</p>
-
-<p>
-  <%= form.label :description %>
-  <%= form.text_area :description %>
-  <%= wikitoolbar_for 'invoice_description' %>
-</p>
-
+<%= render(:partial => 'form', :object => form) %>
 
 <p><%= form.submit "Create" %></p>
-</fieldset>
+
 <% end %>
 
 <% content_for :header_tags do %>
