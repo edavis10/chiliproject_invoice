@@ -27,7 +27,7 @@
 </p>
 
 <p>
-  <%= form.text_field 'rate', :size => 6 %>
+  <%= form.text_field 'rate', :size => 6, :value => @settings['invoice_default_rate'] %>
 </p>
 
 <p><%= submit_to_remote 'autofill', 'Autofill', :url => { :action => 'autofill', :id => @project } %></p>

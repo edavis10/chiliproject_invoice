@@ -17,7 +17,8 @@ Redmine::Plugin.register :invoice_plugin do
     'invoice_company_website' => 'http://www.example.com',
     'invoice_foot_note' => 'Thank you for your business',
     'invoice_currency_symbol' => '$',
-    'invoice_payment_terms' => '30'
+    'invoice_payment_terms' => '30',
+    'invoice_default_rate' => '50'
   }, :partial => 'settings/settings'
   
   project_module :invoice_module do

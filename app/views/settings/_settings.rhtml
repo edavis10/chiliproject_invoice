@@ -30,4 +30,8 @@
 <p>
   <label>Payment Terms (days)</label><%= text_field_tag 'settings[invoice_payment_terms]', @settings['invoice_payment_terms'], :size => 5 %>
 </p>
+
+<p>
+  <label>Default Hourly Rate</label><%= text_field_tag 'settings[invoice_default_rate]', @settings['invoice_default_rate'], :size => 5 %>
+</p>
 </fieldset>
