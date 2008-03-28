@@ -1,5 +1,11 @@
 page['invoice_amount'].value = @total
+
+# Invoice description
 description = ''
+description << "h3. " + h(@p.name) + "\n\n"
+description << h(@p.description) + "\n\n"
+description << "h3. Work Completed\n\n"
+
 @issues.each do |issue|
   description << "* #{issue.subject} (#{issue.status} ##{issue.id})\n"
 end

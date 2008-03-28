@@ -58,10 +58,10 @@ class InvoiceController < ApplicationController
   
   def autofill
     # Get project
-    project = Project.find_by_id(params[:autofill][:project_id])
+    @p = Project.find_by_id(params[:autofill][:project_id])
     
     # Get customer
-    @customer = Customer.find_by_id(project.customer_id) # Customer plugin only has a 1-way relationship
+    @customer = Customer.find_by_id(@p.customer_id) # Customer plugin only has a 1-way relationship
     
     # Build date range
     @date_from = params[:autofill][:date_from]
@@ -71,7 +71,7 @@ class InvoiceController < ApplicationController
     @activities =  params[:autofill][:activities].collect {|p| p.to_i }
     
     # Fetch issues
-    @issues = project.issues.find(:all,
+    @issues = @p.issues.find(:all,
                                   :conditions => ['time_entries.spent_on >= :from AND time_entries.spent_on <= :to AND time_entries.activity_id IN (:activities)',
                                                   {
                                                     :from => @date_from,
