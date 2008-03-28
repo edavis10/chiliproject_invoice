@@ -1,3 +1,5 @@
+<%= render :partial => 'invoice_menu' %>
+
 <h1>New Invoice</h1>
 
 <% form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>

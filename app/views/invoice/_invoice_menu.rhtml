@@ -1,0 +1,11 @@
+<div id="invoice-menu" class="nonprinting">
+  <ul>
+    <%= content_tag(:li, link_to('New Invoice', :action => 'new', :id => @project)) %>
+    <%= content_tag(:li, link_to('Invoice List', :action => 'index', :id => @project)) %>
+  </ul>
+
+</div>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "invoice.css", :plugin => "invoice_plugin", :media => 'all' %>
+  <%= stylesheet_link_tag "invoice_print.css", :plugin => "invoice_plugin", :media => 'print' %>
+<% end %>

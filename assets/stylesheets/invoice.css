@@ -17,3 +17,9 @@ div#customer h3, div#company h3 { font-size:large; }
 div#invoice h3 { color: #334E6C }
 
 div#invoice .date { font-style: italic; }
+
+div#invoice-menu { border: 1px solid #CCCCCC; padding: 5px; margin-bottom: 10px;}
+div#invoice-menu ul { padding: 0; margin: 0; list-style:none; }
+div#invoice-menu li { display: inline;}
+div#invoice-menu li a { text-decoration:none; padding: 5px;}
+div#invoice-menu li a:hover { background: #759FCF; color: #FFFFFF }
