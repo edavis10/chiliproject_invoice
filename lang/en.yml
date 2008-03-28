@@ -1,0 +1,4 @@
+field_invoice_number: Invoice number
+field_customer: Customer
+field_invoiced_on: Invoice Date
+field_amount: Invoice Amount

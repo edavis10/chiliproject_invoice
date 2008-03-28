@@ -1,28 +1,25 @@
+<fieldset>
 <%= error_messages_for 'invoice' %>
 
 <p>
-  <%= form.label :invoice_number %>
   <%= form.text_field :invoice_number %> (last number was #<%= @last_number %>)
 </p>
 
 <p>
-  <%= form.label :customer_id %>
   <%= form.select :customer_id, Customer.find(:all).collect { |c| ["#{c.company} - #{c.name}", c.id]} %>
 </p>
 
 <p>
-  <%= form.label :invoiced_on %>
   <%= form.date_select :invoiced_on %>
 </p>
   
 <p>
-  <%= form.label :amount %>
   <%= form.text_field :amount %>
 </p>
 
 <p>
-  <%= form.label :description %>
   <%= form.text_area :description %>
   <%= wikitoolbar_for 'invoice_description' %>
 </p>
 
+</fieldset>
