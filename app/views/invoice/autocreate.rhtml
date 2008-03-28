@@ -1,0 +1,80 @@
+<%= render :partial => 'invoice_menu' %>
+
+<h1>New Invoice from Data</h1>
+
+<% form_for(:autofill, { }, :url => { :action => 'autofill', :id => @project}) do |form| %>
+
+<fieldset>
+<legend>Auto Fill</legend>
+<p>
+  <label for="autofill[project]">Project:</label><br />
+  <%= collection_select :autofill, :project_id, (Project.find(:all, :order => 'name ASC')), :id, :name %>
+</p>
+
+<p>
+  <label for="timesheet_date_from">From:</label>
+  <%= text_field :autofill, "date_from", :size => 10 %><%= calendar_for('autofill_date_from') %>
+  <label for="timesheet_date_to">To:</label>
+  <%= text_field :autofill, "date_to", :size => 10 %><%= calendar_for('autofill_date_to') %>
+</p>
+
+
+<p><label for="timesheet[activities][]"><%= l(:timesheet_activities_label)%>:</label><br />
+<%= select_tag 'autofill[activities][]',
+    options_from_collection_for_select(Enumeration::get_values('ACTI'), :id, :name),
+    { :multiple => true, :size => 3} %>
+</p>
+
+<p><%= form.label :rate %>
+<%= text_field :autofill, 'rate', :size => 6 %></p>
+
+<%= submit_to_remote 'autofill', 'Autofill', :url => { :action => 'autofill', :id => @project } %>
+
+</fieldset>
+<% end %>
+
+<% form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>
+<fieldset>
+<legend>Invoice</legend>
+<p>
+  <%= form.label :invoice_number %>
+  <%= form.text_field :invoice_number %>
+</p>
+
+<p>
+  <%= form.hidden_field :customer_id %>
+  Customer: <span id="customer_name"></span>
+</p>
+
+<p>
+  <%= form.label :invoiced_on %>
+  <%= form.date_select :invoiced_on %>
+</p>
+  
+<p>
+  <%= form.label :amount %>
+  <%= form.text_field :amount %>
+</p>
+
+<p>
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+  <%= wikitoolbar_for 'invoice_description' %>
+</p>
+
+
+<p><%= form.submit "Create" %></p>
+</fieldset>
+<% end %>
+
+<%= observe_field :autofill_project_id, :url => { :controller => :invoice, :action => 'project_change', :id => @project },
+      :with => 'project_id'
+      %>
+
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'calendar/calendar' %>
+    <%= javascript_include_tag "calendar/lang/calendar-#{current_language}.js" %>
+    <%= javascript_include_tag 'calendar/calendar-setup' %>
+    <%= stylesheet_link_tag 'calendar' %>
+<% end %>
+

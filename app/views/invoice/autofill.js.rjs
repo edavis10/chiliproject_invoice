@@ -1,0 +1,7 @@
+page['invoice_amount'].value = @total
+description = ''
+@issues.each do |issue|
+  description << "* #{issue.subject} (#{issue.status} ##{issue.id})\n"
+end
+
+page['invoice_description'].value = description

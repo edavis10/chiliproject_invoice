@@ -11,6 +11,10 @@ class InvoiceController < ApplicationController
     @invoice = Invoice.new
   end
 
+  def autocreate
+    @invoice = Invoice.new    
+  end
+
   def show
     @invoice = Invoice.find(params[:invoice][:id])
     render :layout => 'print' if params[:print]
@@ -52,6 +56,44 @@ class InvoiceController < ApplicationController
     end
   end
   
+  def project_change
+    project = Project.find_by_id(params[:project_id])
+    @customer = Customer.find_by_id(project.customer_id) # Customer plugin only has a 1-way relationship
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def autofill
+    # Get project
+    project = Project.find_by_id(params[:autofill][:project_id])
+    
+    # Build date range
+    @date_from = params[:autofill][:date_from]
+    @date_to = params[:autofill][:date_to]
+    
+    # Build activities
+    @activities =  params[:autofill][:activities].collect {|p| p.to_i }
+    
+    # Fetch issues
+    @issues = project.issues.find(:all,
+                                  :conditions => ['time_entries.spent_on >= :from AND time_entries.spent_on <= :to AND time_entries.activity_id IN (:activities)',
+                                                  {
+                                                    :from => @date_from,
+                                                    :to => @date_to,
+                                                    :activities => @activities
+                                                  }],
+                                  :include => [:time_entries])
+    
+    @total_time = @issues.collect(&:time_entries).flatten.collect(&:hours).sum
+    
+    @total = @total_time.to_f * params[:autofill][:rate].to_f
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   private
   def find_project
     @project = Project.find(params[:id])
@@ -61,4 +103,3 @@ class InvoiceController < ApplicationController
     @settings = Setting.plugin_invoice_plugin
   end
 end
-

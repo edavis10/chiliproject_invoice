@@ -1,6 +1,7 @@
 <div id="invoice-menu" class="nonprinting">
   <ul>
     <%= content_tag(:li, link_to('New Invoice', :action => 'new', :id => @project)) %>
+    <%= content_tag(:li, link_to('New Invoice From Data', :action => 'autocreate', :id => @project)) %>
     <%= content_tag(:li, link_to('Invoice List', :action => 'index', :id => @project)) %>
   </ul>
 
