@@ -68,6 +68,9 @@ class InvoiceController < ApplicationController
     # Get project
     project = Project.find_by_id(params[:autofill][:project_id])
     
+    # Get customer
+    @customer = Customer.find_by_id(project.customer_id) # Customer plugin only has a 1-way relationship
+    
     # Build date range
     @date_from = params[:autofill][:date_from]
     @date_to = params[:autofill][:date_to]

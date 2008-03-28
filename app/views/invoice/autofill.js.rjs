@@ -5,3 +5,7 @@ description = ''
 end
 
 page['invoice_description'].value = description
+
+# Customer
+page['invoice_customer_id'].value = @customer.id
+page.replace_html 'customer_name', h(@customer.name)
