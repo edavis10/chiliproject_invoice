@@ -11,22 +11,25 @@
   <%= collection_select :autofill, :project_id, (Project.find(:all, :order => 'name ASC')), :id, :name %>
 </p>
 
-<p>
+<fieldset>
+<legend>Date Range</legend>
   <label for="timesheet_date_from">From:</label>
   <%= text_field :autofill, "date_from", :size => 10 %><%= calendar_for('autofill_date_from') %>
   <label for="timesheet_date_to">To:</label>
   <%= text_field :autofill, "date_to", :size => 10 %><%= calendar_for('autofill_date_to') %>
-</p>
+</fieldset>
 
 
 <p><label for="timesheet[activities][]"><%= l(:timesheet_activities_label)%>:</label><br />
 <%= select_tag 'autofill[activities][]',
     options_from_collection_for_select(Enumeration::get_values('ACTI'), :id, :name),
-    { :multiple => true, :size => 3} %>
+    { :multiple => true, :size => 5} %>
 </p>
 
-<p><%= form.label :rate %>
-<%= text_field :autofill, 'rate', :size => 6 %></p>
+<p>
+  <%= form.label :rate %>
+  <%= text_field :autofill, 'rate', :size => 6 %>
+</p>
 
 <%= submit_to_remote 'autofill', 'Autofill', :url => { :action => 'autofill', :id => @project } %>
 
