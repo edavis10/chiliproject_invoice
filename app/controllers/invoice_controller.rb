@@ -9,13 +9,13 @@ class InvoiceController < ApplicationController
 
   def new
     @invoice = Invoice.new
-    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
+    @last_number = last_invoice_number
   end
 
   def autocreate
     @invoice = Invoice.new    
     @autofill = Autofill.new
-    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
+    @last_number = last_invoice_number
   end
 
   def show
@@ -25,7 +25,7 @@ class InvoiceController < ApplicationController
   
   def edit
     @invoice = Invoice.find(params[:invoice][:id])
-    @last_number = Invoice.find(:first, :order => 'id DESC').invoice_number
+    @last_number = last_invoice_number
   end
   
   def create
@@ -100,5 +100,14 @@ class InvoiceController < ApplicationController
   
   def get_settings
     @settings = Setting.plugin_invoice_plugin
+  end
+  
+  def last_invoice_number
+    last_invoice = Invoice.find(:first, :order => 'id DESC')
+    unless last_invoice.nil?
+      last_invoice.invoice_number
+    else
+      '-'
+    end
   end
 end
