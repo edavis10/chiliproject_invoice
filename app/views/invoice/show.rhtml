@@ -1,10 +1,12 @@
 <%= render :partial => 'invoice_menu' %>
 
 <div id="invoice">
-  <div id="invoice-meta">
-    <p id="invoice-number">Invoice #<%= h @invoice.invoice_number -%></p>
-    <p class="date"><%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
+
+  <div style="text-align:center">
+    <img src="/images/logo.jpg" style="margin-bottom:20px;"/>
   </div>
+
+  <div class="clear"></div>
 
   <div id="company">
     <h3><%= h @settings['invoice_company_name'] %></h3>
@@ -13,7 +15,8 @@
   </div>
 
   <div id="customer">
-    <h3><%= h @invoice.customer.company -%></h3>
+    <h3>Bill To:</h3>
+    <p><%= h @invoice.customer.company -%></p>
     <p><%= h @invoice.customer.name -%></p>
     <%= simple_format h @invoice.customer.address -%>
     <p><%= h @invoice.customer.phone -%></p>
@@ -22,26 +25,26 @@
 
   <div class="clear"></div>
 
+  <div id="invoice-meta">
+    <p id="invoice-number">Invoice #<%= h @invoice.invoice_number -%></p>
+    <p class="date">Invoice date: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
+    <p class="date">Due Date: <%= (@invoice.invoiced_on + @settings['invoice_payment_terms'].to_i.days).strftime('%B %d, %Y') %></p>
+  </div>
+
   <div id="invoice-description">
-    <h3>Work Description</h3>
+    <h1>Work Description</h1>
     <%= @invoice.description_html %>
   </div>
+
 
   <div id="amount">
     <p>Total Due: <%= h number_to_currency(@invoice.amount, :unit => @settings['invoice_currency_symbol']) %></p>
   </div>
 
-  <div id="payment-terms">
-    <p>Payment Terms: <%= h @settings['invoice_payment_terms'] %> Days </p>
-    <p>Due: <%= (@invoice.invoiced_on + @settings['invoice_payment_terms'].to_i.days).strftime('%B %d, %Y') %></p>
-  </div>
-
   <div id="foot-note">
-    <p><%= h @settings['invoice_foot_note'] %></p>
+    <%= simple_format h @settings['invoice_foot_note'] %>
   </div>
 </div>
-
-<hr />
 
 <div class="nonprinting">
   <%= link_to 'Printable view', :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>

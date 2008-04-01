@@ -1,2 +1,5 @@
 /* Hide all the non printing elements */
 .nonprinting { display:none; }
+
+/* Larger font please */
+body { font-size:medium }

@@ -1,14 +1,17 @@
 div#invoice {  }
-div#invoice-meta {  }
+div#invoice-meta { float:right; border: 1px solid #CCCCCC; width: auto; padding: 8px 15px; margin: 30px 0 25px 0; background: #FFFFFF}
+div#invoice-meta p { margin: 0 15px 0 0;}
 div#company { float:right; margin: 0 25px; }
 div#customer {  }
-div#invoice-description {margin: 30px 0; padding: 10px; background: #EEEEEE; border: 1px solid #CCCCCC;}
-div#amount { float:right; font-size:large; }
+div#invoice-description {margin: 30px 0; padding: 10px; background: #FFFFFF; border: 1px solid #CCCCCC;}
+#invoice-description h1 { margin: 0 0 15px 0; }
+div#amount { float:right; font-size:large; color: #334E6C;}
 div#payment-terms {  }
-div#foot-note { margin: 20px 0; padding: 10px; border: 1px solid #CCCCCC; }
+div#foot-note { margin: 20px 0; padding: 10px; width: 70%;}
 div.clear { clear:both; }
 
-#invoice-number { font-weight: bold; font-size: large;  color: #334E6C }
+#invoice-number { font-weight: bold; font-size: large;  color: #334E6C; }
+
 
 div#amount p { font-weight: bold; }
 div#customer p, div#company p { margin:0; padding:0; }
