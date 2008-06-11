@@ -3,6 +3,8 @@ class InvoiceController < ApplicationController
   layout 'base'
   before_filter :find_project, :authorize, :get_settings
 
+  helper :invoices
+  
   def index
     @invoices = Invoice.find(:all)
   end

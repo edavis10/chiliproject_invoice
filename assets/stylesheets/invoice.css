@@ -12,6 +12,11 @@ div.clear { clear:both; }
 
 #invoice-number { font-weight: bold; font-size: large;  color: #334E6C; }
 
+.invoice-message { float:right; font-weight: bold; font-size: larger; padding: 0px 15px; border: #000000 dashed 1px;}
+.fully-paid { color: #FFFFFF; background: #00CC00; }
+.pending { color: #000000; background: #EEEE00;}
+.late { color: #FFFFFF; background: #FF0000; }
+
 
 div#amount p { font-weight: bold; }
 div#customer p, div#company p { margin:0; padding:0; }

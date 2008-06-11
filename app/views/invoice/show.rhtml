@@ -1,5 +1,7 @@
 <%= render :partial => 'invoice_menu' %>
 
+<%= invoice_status(@invoice) %>
+  
 <div id="invoice">
 
   <div style="text-align:center">
@@ -28,7 +30,7 @@
   <div id="invoice-meta">
     <p id="invoice-number">Invoice #<%= h @invoice.invoice_number -%></p>
     <p class="date">Invoice date: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
-    <p class="date">Due Date: <%= (@invoice.invoiced_on + @settings['invoice_payment_terms'].to_i.days).strftime('%B %d, %Y') %></p>
+    <p class="date">Due Date: <%= @invoice.due_date.strftime('%B %d, %Y') %></p>
   </div>
 
   <div id="invoice-description">

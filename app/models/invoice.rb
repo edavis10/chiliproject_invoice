@@ -9,4 +9,15 @@ class Invoice < ActiveRecord::Base
   def textilize
     self.description_html = RedCloth.new(self.description).to_html
   end
+  
+  def fully_paid?
+    total_paid = self.payments.collect(&:amount).sum
+    return total_paid >= self.amount
+  end
+
+  def late?
+    return false if fully_paid?
+    return Time.now > self.due_date
+  end
+  
 end
