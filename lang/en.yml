@@ -5,3 +5,6 @@ field_amount: Invoice Amount
 field_date_from: From
 field_date_to: To
 field_rate: Hourly Rate
+field_invoice: Invoice
+field_applied_on: Payment applied on
+field_note: Payment note
