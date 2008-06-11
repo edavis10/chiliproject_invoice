@@ -10,6 +10,21 @@ class Invoice < ActiveRecord::Base
     return Invoice.new({ :due_date => Time.now + Setting.plugin_invoice_plugin['invoice_payment_terms'].to_i.days })
   end
   
+  def self.open
+    invoices = self.find(:all)
+    return invoices.select { |invoice| !invoice.fully_paid? && !invoice.late? }
+  end
+  
+  def self.late
+    invoices = self.find(:all)
+    return invoices.select { |invoice| invoice.late? }
+  end
+  
+  def self.closed
+    invoices = self.find(:all)
+    return invoices.select { |invoice| invoice.fully_paid? }
+  end
+  
   def textilize
     self.description_html = RedCloth.new(self.description).to_html
   end

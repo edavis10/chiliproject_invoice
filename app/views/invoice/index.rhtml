@@ -1,14 +1,38 @@
 <%= render :partial => 'invoice_menu' %>
 
-<h1>Invoices</h1>
+<h1>Open Invoices</h1>
 
-<table id="invoices">
+<table id="open-invoices">
   <tr>
     <th>Invoice Number</th>
     <th>Date Issued</th>
     <th>Customer</th>
     <th>Amount</th>
   </tr>
-  <%= render :partial => 'row', :collection => @invoices %>
+  <%= render :partial => 'row', :collection => @open_invoices %>
+</table>
+
+<h1>Late Invoices</h1>
+
+<table id="late-invoices">
+  <tr>
+    <th>Invoice Number</th>
+    <th>Date Issued</th>
+    <th>Customer</th>
+    <th>Amount</th>
+  </tr>
+  <%= render :partial => 'row', :collection => @late_invoices %>
+</table>
+
+<h1>Closed Invoices</h1>
+
+<table id="closed-invoices">
+  <tr>
+    <th>Invoice Number</th>
+    <th>Date Issued</th>
+    <th>Customer</th>
+    <th>Amount</th>
+  </tr>
+  <%= render :partial => 'row', :collection => @closed_invoices %>
 </table>
 

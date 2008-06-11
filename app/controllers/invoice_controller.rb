@@ -6,7 +6,9 @@ class InvoiceController < ApplicationController
   helper :invoices
   
   def index
-    @invoices = Invoice.find(:all)
+    @open_invoices = Invoice.open
+    @late_invoices = Invoice.late
+    @closed_invoices = Invoice.closed
   end
 
   def new
