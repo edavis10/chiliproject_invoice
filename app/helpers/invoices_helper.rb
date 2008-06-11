@@ -1,4 +1,12 @@
 module InvoicesHelper
+
+  def invoice_list_tabs(invoices = { })
+    tabs = [{:name => 'open', :label => "Open Invoices", :items => invoices[:open]},
+            {:name => 'late', :label => "Late Invoices", :items => invoices[:late]},
+            {:name => 'closed', :label => "Closed Invoices", :items => invoices[:closed]}
+            ]
+  end
+  
   def invoice_status(invoice)
     case true
     when invoice.fully_paid?

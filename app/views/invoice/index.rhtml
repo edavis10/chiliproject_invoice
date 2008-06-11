@@ -1,38 +1,22 @@
 <%= render :partial => 'invoice_menu' %>
 
-<h1>Open Invoices</h1>
+<% tabs = invoice_list_tabs({ :open => @open_invoices, :late => @late_invoices, :closed => @closed_invoices}) %>
+<% selected_tab = tabs.first[:name] %>
 
-<table id="open-invoices">
-  <tr>
-    <th>Invoice Number</th>
-    <th>Date Issued</th>
-    <th>Customer</th>
-    <th>Amount</th>
-  </tr>
-  <%= render :partial => 'row', :collection => @open_invoices %>
-</table>
+<div class="tabs">
+<ul>
+ <% tabs.each do |tab| -%>
+    <li><%= link_to l(tab[:label]), { :tab => tab[:name] },
+                                    :id => "tab-#{tab[:name]}",
+                                    :class => (tab[:name] != selected_tab ? nil : 'selected'),
+                                    :onclick => "showTab('#{tab[:name]}'); this.blur(); return false;" %></li>
+<% end -%>
+</ul>
+</div>
 
-<h1>Late Invoices</h1>
-
-<table id="late-invoices">
-  <tr>
-    <th>Invoice Number</th>
-    <th>Date Issued</th>
-    <th>Customer</th>
-    <th>Amount</th>
-  </tr>
-  <%= render :partial => 'row', :collection => @late_invoices %>
-</table>
-
-<h1>Closed Invoices</h1>
-
-<table id="closed-invoices">
-  <tr>
-    <th>Invoice Number</th>
-    <th>Date Issued</th>
-    <th>Customer</th>
-    <th>Amount</th>
-  </tr>
-  <%= render :partial => 'row', :collection => @closed_invoices %>
-</table>
-
+<% tabs.each do |tab| -%>
+<%= content_tag('div', render(:partial => 'table', :locals => { :invoices => tab[:items]}), 
+                       :id => "tab-content-#{tab[:name]}",
+                       :style => (tab[:name] != selected_tab ? 'display:none' : nil),
+                       :class => 'tab-content') %>
+<% end -%> 
