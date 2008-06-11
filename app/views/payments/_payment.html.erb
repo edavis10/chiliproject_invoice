@@ -1,0 +1,3 @@
+<div class="payment">
+  <p><%= h number_to_currency(payment.amount, :unit => @settings['invoice_currency_symbol']) %> paid on <%= h payment.applied_on %></p>
+</div>

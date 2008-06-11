@@ -1,0 +1,31 @@
+<%= render :partial => 'invoice/invoice_menu' %>
+
+<h1>New Payment</h1>
+
+<% labelled_tabular_form_for(:payment, @payment, :url => { :action => 'create', :id => @project}) do |form| %>
+<fieldset>
+<legend>Payment</legend>
+<%= error_messages_for 'payment' %>
+
+<p>
+  <%= form.select :invoice_id, Invoice.find(:all).collect { |i| ["##{i.invoice_number}", i.id]} %>
+</p>
+
+<p>
+  <%= form.date_select :applied_on %>
+</p>
+  
+<p>
+  <%= form.text_field :amount %>
+</p>
+
+<p>
+  <%= form.text_area :note, :cols => 60, :rows => 2 %>
+</p>
+
+</fieldset>
+
+
+<p><%= form.submit "Create" %></p>
+
+<% end %>

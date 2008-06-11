@@ -25,6 +25,9 @@ Redmine::Plugin.register :invoice_plugin do
     permission :show_invoices, { :invoice => [:index, :show]}
     permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :autofill]}
     permission :delete_invoices, { :invoice => [:destroy]}
+
+    permission :pay_invoices, { :payments => [:new, :create]}
+    
   end
   
   menu :project_menu, "Invoices", :controller => 'invoice', :action => 'index'
