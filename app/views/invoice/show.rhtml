@@ -46,6 +46,13 @@
   </div>
 </div>
 
+<% unless @payments.empty? %>
+<div class="payments nonprinting">
+  <h2>Payments</h2>
+  <%= render :partial => 'payments/payment', :collection => @payments %>
+</div>
+<% end %>
+
 <div class="nonprinting">
   <%= link_to 'Printable view', :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>
   <%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>

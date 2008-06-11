@@ -20,6 +20,7 @@ class InvoiceController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:invoice][:id])
+    @payments = @invoice.payments.find(:all, :order => 'applied_on DESC')
     render :layout => 'print' if params[:print]
   end
   
