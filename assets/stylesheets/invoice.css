@@ -1,3 +1,4 @@
+table.invoices { text-align: center; width: 80%; }
 div#invoice {  }
 div#invoice-meta { float:right; border: 1px solid #CCCCCC; width: auto; padding: 8px 15px; margin: 30px 0 25px 0; background: #FFFFFF}
 div#invoice-meta p { margin: 0 15px 0 0;}
