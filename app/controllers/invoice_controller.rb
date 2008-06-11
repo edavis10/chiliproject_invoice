@@ -10,12 +10,12 @@ class InvoiceController < ApplicationController
   end
 
   def new
-    @invoice = Invoice.new
+    @invoice = Invoice.default
     @last_number = last_invoice_number
   end
 
   def autocreate
-    @invoice = Invoice.new    
+    @invoice = Invoice.default
     @autofill = Autofill.new
     @last_number = last_invoice_number
   end

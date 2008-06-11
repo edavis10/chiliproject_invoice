@@ -1,9 +1,13 @@
 <div id="invoice-menu" class="nonprinting">
   <ul>
-    <%= content_tag(:li, link_to('New Invoice', :action => 'new', :id => @project)) %>
-    <%= content_tag(:li, link_to('New Autofilled Invoice', :action => 'autocreate', :id => @project)) %>
-    <%= content_tag(:li, link_to('Invoice List', :action => 'index', :id => @project)) %>
-    <%= content_tag(:li, link_to('New Payment', :controller => 'payments', :action => 'new', :id => @project)) %>
+    <%= content_tag(:li, link_to('New Invoice', :controller => 'invoice', :action => 'new', :id => @project)) %>
+    <%= content_tag(:li, link_to('New Autofilled Invoice', :controller => 'invoice', :action => 'autocreate', :id => @project)) %>
+    <%= content_tag(:li, link_to('Invoice List', :controller => 'invoice', :action => 'index', :id => @project)) %>
+    <% if @invoice.nil? %>
+      <%= content_tag(:li, link_to('New Payment', :controller => 'payments', :action => 'new', :id => @project)) %>
+    <% else %>
+      <%= content_tag(:li, link_to('New Payment', :controller => 'payments', :action => 'new', :id => @project, :payment => { :invoice_id => @invoice.id})) %>
+    <% end %>
   </ul>
 
 </div>

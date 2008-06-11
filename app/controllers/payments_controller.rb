@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
   before_filter :find_project, :authorize, :get_settings
 
   def new
-    @payment = Payment.new
+    @payment = Payment.new(params[:payment])
   end
   
   def create

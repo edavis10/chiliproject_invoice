@@ -5,6 +5,10 @@ class Invoice < ActiveRecord::Base
   
   validates_presence_of :invoice_number, :customer, :amount, :description
   validates_uniqueness_of :invoice_number
+
+  def self.default
+    return Invoice.new({ :due_date => Time.now + Setting.plugin_invoice_plugin['invoice_payment_terms'].to_i.days })
+  end
   
   def textilize
     self.description_html = RedCloth.new(self.description).to_html
