@@ -1,5 +1,6 @@
 class Invoice < ActiveRecord::Base
   belongs_to :customer  
+  has_many :payments
   before_save :textilize
   
   validates_presence_of :invoice_number, :customer, :amount, :description
