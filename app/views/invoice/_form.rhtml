@@ -11,11 +11,11 @@
 </p>
 
 <p>
-  <%= form.date_select :invoiced_on %>
+  <%= form.text_field :invoiced_on, :size => 10 %><%= calendar_for('invoice_invoiced_on') %>
 </p>
 
 <p>
-  <%= form.date_select :due_date %>
+  <%= form.text_field :due_date, :size => 10 %><%= calendar_for('invoice_due_date') %>
 </p>
   
 <p>
