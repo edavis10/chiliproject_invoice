@@ -12,7 +12,7 @@
 </p>
 
 <p>
-  <%= form.date_select :applied_on %>
+  <%= form.text_field :applied_on, :size => 10 %><%= calendar_for('payment_applied_on') %>
 </p>
   
 <p>
