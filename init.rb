@@ -19,7 +19,7 @@ Redmine::Plugin.register :invoice_plugin do
     'invoice_currency_symbol' => '$',
     'invoice_payment_terms' => '30',
     'invoice_default_rate' => '50'
-  }, :partial => 'settings/settings'
+  }, :partial => 'settings/invoice_settings'
   
   project_module :invoice_module do
     permission :show_invoices, { :invoice => [:index, :show]}
