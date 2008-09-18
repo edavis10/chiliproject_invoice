@@ -77,7 +77,11 @@ class InvoiceController < ApplicationController
     @date_to = params[:autofill][:date_to]
     
     # Build activities
-    @activities =  params[:autofill][:activities].collect {|p| p.to_i }
+    if params[:autofill][:activities]
+      @activities =  params[:autofill][:activities].collect {|p| p.to_i }
+    end
+    
+    @activities ||= []
     
     # Fetch issues
     @issues = @p.issues.find(:all,
