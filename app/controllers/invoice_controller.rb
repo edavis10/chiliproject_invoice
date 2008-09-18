@@ -95,6 +95,17 @@ class InvoiceController < ApplicationController
     
     @total_time = @issues.collect(&:time_entries).flatten.collect(&:hours).sum
     
+    # Time logged without an issue
+    @time_entries = @p.time_entries.find(:all,
+                                         :conditions => ['issue_id IS NULL AND spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities)',
+                                                  {
+                                                    :from => @date_from,
+                                                    :to => @date_to,
+                                                    :activities => @activities
+                                                  }])
+
+    @total_time += @time_entries.collect(&:hours).sum
+    
     @total = @total_time.to_f * params[:autofill][:rate].to_f
 
     respond_to do |format|
