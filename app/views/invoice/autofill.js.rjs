@@ -1,4 +1,5 @@
 page['invoice_amount'].value = @total
+page['invoice_project_id'].value = @p.id
 
 # Invoice description
 description = ''

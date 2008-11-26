@@ -1,5 +1,6 @@
 class Invoice < ActiveRecord::Base
   belongs_to :customer  
+  belongs_to :project
   has_many :payments
   before_save :textilize
   

@@ -11,6 +11,10 @@
 </p>
 
 <p>
+  <%= form.select :project_id, Project.find(:all, :order => 'name ASC').collect { |p| [h(p.name), p.id]}, { :include_blank => true} %>
+</p>
+
+<p>
   <%= form.text_field :invoiced_on, :size => 10 %><%= calendar_for('invoice_invoiced_on') %>
 </p>
 
