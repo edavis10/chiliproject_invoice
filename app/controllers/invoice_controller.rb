@@ -113,7 +113,12 @@ class InvoiceController < ApplicationController
     end
   end
   
-  private
+  def outstanding
+    @invoice = Invoice.find(params[:invoice_id])
+    render :text => @invoice.outstanding
+  end
+
+    private
   def find_project
     @project = Project.find(params[:id])
   end

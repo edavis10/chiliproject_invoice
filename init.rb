@@ -26,7 +26,7 @@ Redmine::Plugin.register :invoice_plugin do
     permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :autofill]}
     permission :delete_invoices, { :invoice => [:destroy]}
 
-    permission :pay_invoices, { :payments => [:new, :create]}
+    permission :pay_invoices, { :payments => [:new, :create], :invoice => [:outstanding]}
     
   end
   

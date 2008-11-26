@@ -40,4 +40,8 @@ class Invoice < ActiveRecord::Base
     return Time.now > self.due_date
   end
   
+  def outstanding
+    self.amount - self.payments.collect(&:amount).sum
+  end
+  
 end
