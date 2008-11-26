@@ -9,7 +9,7 @@
     <%= h row.customer.company %> - <%= h row.customer.name %>
   </td>
   <td>
-    <%= h row.project.name unless row.project.nil? %>
+    <%= link_to(h(row.project.name), :controller => 'projects', :action => 'show', :id => row.project) unless row.project.nil? %>
   </td>
   <td>
     <%= h number_to_currency(row.amount, :unit => @settings['invoice_currency_symbol']) %>
