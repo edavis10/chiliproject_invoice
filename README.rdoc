@@ -1,0 +1,24 @@
+= Redmine Invoice plugin
+
+The Redmine Invoice plugin allows a user to create invoices for Customers using Redmine's time entries.
+
+== Features
+
+TODO
+
+== Getting the plugin
+
+A copy of the plugin can be downloaded from {Little Stream Software}[https://projects.littlestreamsoftware.com/projects/list_files/redmine-invoices] or from {GitHub}[http://github.com/edavis10/redmine-invoice-plugin/tree/master]
+
+== Install
+
+TODO
+
+== License
+
+This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for details.
+
+== Help
+
+If you need help you can contact the maintainer at his email address (See CREDITS) or create an issue in the {Bug Tracker}:[https://projects.littlestreamsoftware.com/projects/show/redmine-invoices]
+
