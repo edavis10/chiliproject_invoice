@@ -27,7 +27,7 @@ class Invoice < ActiveRecord::Base
   end
   
   def textilize
-    self.description_html = RedCloth.new(self.description).to_html
+    self.description_html = RedCloth3.new(self.description).to_html
   end
   
   def fully_paid?
