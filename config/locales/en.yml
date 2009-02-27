@@ -9,3 +9,6 @@ en:
   field_invoice: Invoice
   field_applied_on: Payment applied on
   field_note: Payment note
+  label_open_invoices: Open Invoices
+  label_late_invoices: Late Invoices
+  label_closed_invoices: Closed Invoices
