@@ -1,0 +1,13 @@
+field_invoice_number: Numéro de facture
+field_customer: Client
+field_invoiced_on: Date de facturation
+field_amount: Montant facturé
+field_date_from: De
+field_date_to: Vers
+field_rate: Tarif heure
+field_invoice: Facture
+field_applied_on: Paiement appliqué sur
+field_note: Note du paiement
+label_open_invoices: Factures ouvertes
+label_late_invoices: Factures en retard
+label_closed_invoices: Factures fermées
