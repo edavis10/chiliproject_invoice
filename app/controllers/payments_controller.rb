@@ -3,6 +3,8 @@ class PaymentsController < ApplicationController
   layout 'base'
   before_filter :find_project, :authorize, :get_settings
 
+  helper :invoices
+
   def new
     @payment = Payment.new(params[:payment])
   end

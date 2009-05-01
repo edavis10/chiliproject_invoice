@@ -1,4 +1,8 @@
-<%= render :partial => 'invoice_menu' %>
+<% content_for :header_tags do %>
+ <%= header_tags %>
+<% end %>
+
+<%= invoice_menu %>
 
 <%= invoice_status(@invoice) %>
   
@@ -60,7 +64,3 @@
   <%= link_to l(:label_edit_invoice), :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
 </div>
 
-<% content_for :header_tags do %>
-  <%= stylesheet_link_tag "invoice.css", :plugin => "invoice_plugin", :media => 'all' %>
-  <%= stylesheet_link_tag "invoice_print.css", :plugin => "invoice_plugin", :media => 'print' %>
-<% end %>

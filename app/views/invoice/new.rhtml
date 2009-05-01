@@ -1,4 +1,8 @@
-<%= render :partial => 'invoice_menu' %>
+<% content_for :header_tags do %>
+ <%= header_tags %>
+<% end %>
+
+<%= invoice_menu %>
 
 <h1><%= l(:label_new_invoice) %></h1>
 
