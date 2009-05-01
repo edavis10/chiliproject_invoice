@@ -41,7 +41,12 @@ class Invoice < ActiveRecord::Base
   end
   
   def outstanding
-    self.amount - self.payments.collect(&:amount).sum
+    total = self.amount - self.payments.collect(&:amount).sum
+    if total > 0.0
+      return total
+    else
+      return 0.0
+    end
   end
   
 end
