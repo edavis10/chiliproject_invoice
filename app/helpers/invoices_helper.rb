@@ -26,7 +26,7 @@ module InvoicesHelper
     end
   end
 
-  def invoice_menu(invoice=nil)
+  def invoice_menu(invoice=nil, &block)
     menu_items = []
     menu_items << link_to(l(:label_invoice_list), { :controller => 'invoice', :action => 'index', :id => @project}, :class => 'icon icon-invoice-list') 
     menu_items << link_to(l(:label_new_invoice), { :controller => 'invoice', :action => 'new', :id => @project}, :class => 'icon icon-invoice-new') 
@@ -36,7 +36,9 @@ module InvoicesHelper
       menu_items << link_to(l(:label_new_payment), { :controller => 'payments', :action => 'new', :id => @project}, :class => 'icon icon-payment-new') 
     else 
       menu_items << link_to(l(:label_new_payment), { :controller => 'payments', :action => 'new', :id => @project, :payment => { :invoice_id => invoice.id}}, :class => 'icon icon-payment-new') 
-    end 
+    end
+
+    yield menu_items if block_given?
 
     return content_tag(:div, menu_items.join(' '), :class => "contextual nonprinting", :id => "invoice-menu") +
       content_tag(:div, '', :style => 'clear: both')

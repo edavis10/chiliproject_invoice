@@ -2,7 +2,10 @@
  <%= header_tags %>
 <% end %>
 
-<%= invoice_menu %>
+<%= invoice_menu(@invoice) do |menu|
+  menu << link_to(l(:label_printable_view), {:action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true}, :class => 'icon icon-invoice-print')
+  menu << link_to(l(:label_edit_invoice), {:action => 'edit', :id => @project, :invoice => { :id => @invoice }}, :class => 'icon icon-edit')
+end %>
 
 <%= invoice_status(@invoice) %>
   
@@ -58,9 +61,3 @@
   <%= render :partial => 'payments/payment', :collection => @payments %>
 </div>
 <% end %>
-
-<div class="nonprinting">
-  <%= link_to l(:label_printable_view), :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>
-  <%= link_to l(:label_edit_invoice), :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
-</div>
-
