@@ -1,11 +1,11 @@
 <%= render :partial => 'invoice_menu' %>
 
-<h1>New Invoice</h1>
+<h1><%= l(:label_new_invoice) %></h1>
 
 <% labelled_tabular_form_for(:invoice, @invoice, :url => { :action => 'create', :id => @project}) do |form| %>
 
 <%= render(:partial => 'form', :object => form) %>
 
-<p><%= form.submit "Create" %></p>
+<p><%= form.submit l(:button_create) %></p>
 
 <% end %>

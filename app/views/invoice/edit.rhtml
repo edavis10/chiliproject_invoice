@@ -1,6 +1,6 @@
 <%= render :partial => 'invoice_menu' %>
 
-<h1>Editing Invoice</h1>
+<h1><%= l(:label_edit_invoice) %></h1>
 
 <% labelled_tabular_form_for(:invoice, @invoice, :url => { :action => 'update', :id => @project}) do |form| %>
 
@@ -8,6 +8,6 @@
 
 <%= render(:partial => 'form', :object => form) %>
 
-<p><%= form.submit "Update" %></p>
+<p><%= form.submit l(:button_update) %></p>
 
 <% end %>

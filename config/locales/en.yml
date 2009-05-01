@@ -1,14 +1,31 @@
 en:
-  field_invoice_number: Invoice number
-  field_customer: Customer
-  field_invoiced_on: Invoice Date
   field_amount: Invoice Amount
-  field_date_from: From
-  field_date_to: To
-  field_rate: Hourly Rate
-  field_invoice: Invoice
   field_applied_on: Payment applied on
+  field_customer: Customer
+  field_date_from: From
+  field_date_issued: "Date Issued"
+  field_date_to: To
+  field_due_date: "Due Date:"
+  field_invoice: Invoice
+  field_invoice_number: Invoice number
+  field_invoiced_on: Invoice Date
   field_note: Payment note
-  label_open_invoices: Open Invoices
-  label_late_invoices: Late Invoices
+  field_rate: Hourly Rate
+  label_auto_fill: Auto Fill
+  label_bill_to: "Bill To:"
   label_closed_invoices: Closed Invoices
+  label_edit_invoice: Edit Invoice
+  label_invoice: Invoice
+  label_invoice_list: Invoice List
+  label_last_number: "last number was"
+  label_late_invoices: Late Invoices
+  label_new_autofilled_invoice: New Autofilled Invoice
+  label_new_invoice: New Invoice
+  label_new_payment: New Payment
+  label_no_customer_on_project: "That project does not have a customer, please set one before continuing"
+  label_open_invoices: Open Invoices
+  label_paid_invoice: Invoice Paid
+  label_payments: Payments
+  label_printable_view: Printable view
+  label_total_due: "Total Due:"
+  label_work_description: Work Description

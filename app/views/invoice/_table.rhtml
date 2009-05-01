@@ -1,10 +1,10 @@
 <table class="invoices">
   <tr>
-    <th>Invoice Number</th>
-    <th>Date Issued</th>
-    <th>Customer</th>
-    <th>Project</th>
-    <th>Amount</th>
+    <th><%= l(:field_invoice_number) %></th>
+    <th><%= l(:field_date_issued) %></th>
+    <th><%= l(:field_customer) %></th>
+    <th><%= l(:field_project) %></th>
+    <th><%= l(:field_amount) %></th>
   </tr>
   <%= render :partial => 'row', :collection => invoices %>
 </table>

@@ -1,9 +1,9 @@
 <fieldset>
-<legend>Invoice</legend>
+<legend><%= l(:label_invoice) %></legend>
 <%= error_messages_for 'invoice' %>
 
 <p>
-  <%= form.text_field :invoice_number %> (last number was #<%= @last_number %>)
+  <%= form.text_field :invoice_number %> (<%= l(:label_last_number) %> #<%= @last_number %>)
 </p>
 
 <p>

@@ -11,16 +11,16 @@ module InvoicesHelper
     case true
     when invoice.fully_paid?
       return content_tag(:div,
-                         content_tag(:p, "Invoice Paid"),
+                         content_tag(:p, l(:label_paid_invoice)),
                          :class => "invoice-message fully-paid nonprinting")
     when invoice.late?
       return content_tag(:div,
-                         content_tag(:p, "Invoice Late"),
+                         content_tag(:p, l(:label_late_invoices)),
                          :class => "invoice-message late nonprinting")
       
     else
       return content_tag(:div,
-                         content_tag(:p, "Pending"),
+                         content_tag(:p, l(:label_open_invoices)),
                          :class => "invoice-message pending nonprinting")
       
     end

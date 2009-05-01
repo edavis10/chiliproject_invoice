@@ -17,7 +17,7 @@
   </div>
 
   <div id="customer">
-    <h3>Bill To:</h3>
+    <h3><%= l(:label_bill_to) %></h3>
     <p><%= h @invoice.customer.company -%></p>
     <p><%= h @invoice.customer.name -%></p>
     <%= simple_format h @invoice.customer.address -%>
@@ -28,19 +28,19 @@
   <div class="clear"></div>
 
   <div id="invoice-meta">
-    <p id="invoice-number">Invoice #<%= h @invoice.invoice_number -%></p>
-    <p class="date">Invoice date: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
-    <p class="date">Due Date: <%= @invoice.due_date.strftime('%B %d, %Y') %></p>
+    <p id="invoice-number"><%= l(:field_invoice) %> #<%= h @invoice.invoice_number -%></p>
+    <p class="date"><%= l(:field_invoiced_on) %>: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
+    <p class="date"><%= l(:field_due_date) %>: <%= @invoice.due_date.strftime('%B %d, %Y') %></p>
   </div>
 
   <div id="invoice-description">
-    <h1>Work Description</h1>
+    <h1><%= l(:label_work_description) %></h1>
     <%= @invoice.description_html %>
   </div>
 
 
   <div id="amount">
-    <p>Total Due: <%= h number_to_currency(@invoice.amount, :unit => @settings['invoice_currency_symbol']) %></p>
+    <p><%= l(:label_total_due) %> <%= h number_to_currency(@invoice.amount, :unit => @settings['invoice_currency_symbol']) %></p>
   </div>
 
   <div id="foot-note">
@@ -50,14 +50,14 @@
 
 <% unless @payments.empty? %>
 <div class="payments nonprinting">
-  <h2>Payments</h2>
+  <h2><%= l(:label_payments) %></h2>
   <%= render :partial => 'payments/payment', :collection => @payments %>
 </div>
 <% end %>
 
 <div class="nonprinting">
-  <%= link_to 'Printable view', :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>
-  <%= link_to 'Edit Invoice', :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
+  <%= link_to l(:label_printable_view), :action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true %>
+  <%= link_to l(:label_edit_invoice), :action => 'edit', :id => @project, :invoice => { :id => @invoice } %>
 </div>
 
 <% content_for :header_tags do %>
