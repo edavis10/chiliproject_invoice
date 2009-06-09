@@ -32,3 +32,10 @@ Redmine::Plugin.register :invoice_plugin do
   
   menu :project_menu, "Invoices", :controller => 'invoice', :action => 'index'
 end
+
+begin
+  require_dependency 'customer' unless Object.const_defined?('Customer')
+rescue LoadError
+  # customer_plugin is not installed
+  raise Exception.new("ERROR: The Customer plugin is not installed.  Please install the Customer plugin")
+end

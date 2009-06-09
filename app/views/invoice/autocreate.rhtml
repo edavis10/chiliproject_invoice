@@ -1,11 +1,15 @@
-<%= render :partial => 'invoice_menu' %>
+<% content_for :header_tags do %>
+ <%= header_tags %>
+<% end %>
 
-<h1>New Invoice from Data</h1>
+<%= invoice_menu %>
+
+<h1><%= l(:label_new_autofilled_invoice) %></h1>
 
 <% labelled_tabular_form_for(:autofill, @autofill, :url => { :action => 'autofill', :id => @project}) do |form| %>
 
 <fieldset>
-<legend>Auto Fill</legend>
+<legend><%= l(:label_auto_fill) %></legend>
 <p>
   <%= form.label :project_id %>
   <%= form.collection_select :project_id, (Project.find(:all, :order => 'name ASC')), :id, :name %>
@@ -39,6 +43,6 @@
 
 <%= render(:partial => 'form', :object => form) %>
 
-<p><%= form.submit "Create" %></p>
+<p><%= form.submit l(:button_create) %></p>
 
 <% end %>

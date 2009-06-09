@@ -21,7 +21,7 @@ page['invoice_description'].value = description
 
 # Customer
 if @customer.blank?
-  page.alert "That project does not have a customer, please set one before continuing"
+  page.alert l(:label_no_customer_on_project)
 else
   page['invoice_customer_id'].value = @customer.id
   page.replace_html 'customer_name', h(@customer.name)

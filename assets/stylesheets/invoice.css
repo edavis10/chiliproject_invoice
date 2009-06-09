@@ -33,3 +33,4 @@ div#invoice-menu { padding:5px; }
 .icon-invoice-list { background-image: url(../images/money.png); }
 .icon-invoice-new { background-image: url(../images/money_add.png); }
 .icon-payment-new { background-image: url(../images/creditcards.png); }
+.icon-invoice-print { background-image: url(../images/printer.png); }
