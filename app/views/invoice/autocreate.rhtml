@@ -22,7 +22,7 @@
 <p>
 <%= label :autofill, :activities %>
 <%= select_tag 'autofill[activities][]',
-    options_from_collection_for_select(RedmineCompatibility::Enumeration.activities, :id, :name),
+    options_from_collection_for_select(InvoiceCompatibility::Enumeration.activities, :id, :name),
     { :multiple => true, :size => 5 } %>
 </p>
 
