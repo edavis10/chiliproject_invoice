@@ -3,6 +3,17 @@ require 'redmine'
 
 RAILS_DEFAULT_LOGGER.info 'Starting Invoice plugin for RedMine'
 
+require 'dispatcher'
+Dispatcher.to_prepare :invoice_plugin do
+  # Needed for the compatibility check
+  begin
+    require_dependency 'time_entry_activity'
+  rescue LoadError
+    # TimeEntryActivity is not available
+  end
+end
+
+
 # TODO: Change the name 
 Redmine::Plugin.register :invoice_plugin do
   name 'Invoice plugin'
