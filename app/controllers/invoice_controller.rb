@@ -2,6 +2,7 @@ class InvoiceController < ApplicationController
   unloadable
   layout 'base'
   before_filter :find_project, :authorize, :get_settings
+  before_filter :find_invoice, :only => [:show, :edit, :update, :destroy]
 
   helper :invoices
   
@@ -23,13 +24,11 @@ class InvoiceController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.find(params[:invoice][:id])
     @payments = @invoice.payments.find(:all, :order => 'applied_on DESC')
     render :layout => 'print' if params[:print]
   end
   
   def edit
-    @invoice = Invoice.find(params[:invoice][:id])
     @last_number = last_invoice_number
   end
   
@@ -45,7 +44,6 @@ class InvoiceController < ApplicationController
   end
   
   def update
-    @invoice = Invoice.find(params[:invoice][:id])
     if @invoice.update_attributes(params[:invoice])
       flash[:notice] = "Invoice saved"
       redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
@@ -55,7 +53,6 @@ class InvoiceController < ApplicationController
   end
   
   def destroy
-    @invoice = Invoice.find(params[:invoice][:id])
     if @invoice.destroy
       flash[:notice] = "Invoice deleted"
       redirect_to :action => "index", :id => params[:id]
@@ -121,6 +118,10 @@ class InvoiceController < ApplicationController
     private
   def find_project
     @project = Project.find(params[:id])
+  end
+
+  def find_invoice
+    @invoice = Invoice.find(params[:invoice][:id])
   end
   
   def get_settings
