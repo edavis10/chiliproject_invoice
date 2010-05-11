@@ -19,7 +19,9 @@ class InvoiceTest < ActiveSupport::TestCase
       Payment.generate!(:amount => 100.0, :invoice => paid)
 
       open_invoices = Invoice.open
-      assert open_invoices.all? {|invoice| !invoice.fully_paid? && !invoice.late? }
+      assert open_invoices.all? {|invoice| invoice.open? }
+      assert_contains open_invoices, open1
+      assert_contains open_invoices, open2
     end
   end
 end

@@ -13,7 +13,7 @@ class Invoice < ActiveRecord::Base
   
   def self.open
     invoices = self.find(:all)
-    return invoices.select { |invoice| !invoice.fully_paid? && !invoice.late? }
+    return invoices.select { |invoice| invoice.open? }
   end
   
   def self.late
@@ -28,6 +28,11 @@ class Invoice < ActiveRecord::Base
   
   def textilize
     self.description_html = RedCloth3.new(self.description).to_html
+  end
+
+  # Is this invoice current but not fully paid?
+  def open?
+    !fully_paid? && !late?
   end
   
   def fully_paid?
