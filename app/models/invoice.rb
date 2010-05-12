@@ -46,12 +46,7 @@ class Invoice < ActiveRecord::Base
   end
   
   def outstanding
-    total = self.amount - self.payments.collect(&:amount).sum
-    if total > 0.0
-      return total
-    else
-      return 0.0
-    end
+    (total = amount - payments.sum('amount')) > 0 ? total : 0.0
   end
 
   generator_for :invoice_number, :start => '10000' do |prev|
