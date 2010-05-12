@@ -24,4 +24,33 @@ class InvoiceTest < ActiveSupport::TestCase
       assert_contains open_invoices, open2
     end
   end
+
+  context "#outstanding" do
+    setup do
+      customer = Customer.create!(:name => 'customer')
+      @invoice = Invoice.generate!(:amount => 100.0, :customer => customer)
+    end
+    
+    should "return the total unpaid amount left on an invoice" do
+      Payment.generate!(:amount => 10, :invoice => @invoice)
+
+      assert_equal @invoice.amount - 10, @invoice.outstanding
+    end
+    
+    should "return 0.0 if the invoice is fully paid" do
+      Payment.generate!(:amount => @invoice.amount, :invoice => @invoice)
+
+      assert_equal 0.0, @invoice.outstanding
+    end
+    
+    should "return 0.0 if the invoice is over paid" do
+      Payment.generate!(:amount => @invoice.amount + 25.0, :invoice => @invoice)
+
+      assert_equal 0.0, @invoice.outstanding
+    end
+    
+    should "return the base amount if there are no payments" do
+      assert_equal @invoice.amount, @invoice.outstanding
+    end
+  end
 end
