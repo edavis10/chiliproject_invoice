@@ -36,8 +36,7 @@ class Invoice < ActiveRecord::Base
   end
   
   def fully_paid?
-    total_paid = self.payments.collect(&:amount).sum
-    return total_paid >= self.amount
+    outstanding <= 0
   end
 
   def late?

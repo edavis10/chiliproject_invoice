@@ -53,4 +53,30 @@ class InvoiceTest < ActiveSupport::TestCase
       assert_equal @invoice.amount, @invoice.outstanding
     end
   end
+
+  context "#fully_paid?" do
+    setup do
+      customer = Customer.create!(:name => 'customer')
+      @invoice = Invoice.generate!(:amount => 100.0, :customer => customer)
+    end
+    
+    should "return false if the outstanding amount is greater than 0" do
+      Payment.generate!(:amount => 10, :invoice => @invoice)
+
+      assert !@invoice.fully_paid?
+    end
+    
+    should "return true if the outstanding amount is less than 0" do
+      Payment.generate!(:amount => @invoice.amount + 10, :invoice => @invoice)
+
+      assert @invoice.fully_paid?
+    end
+
+    should "return true if the outstanding amount is equal to 0" do
+      Payment.generate!(:amount => @invoice.amount, :invoice => @invoice)
+
+      assert @invoice.fully_paid?
+    end
+
+  end
 end
