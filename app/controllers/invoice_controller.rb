@@ -63,48 +63,19 @@ class InvoiceController < ApplicationController
   end
   
   def autofill
-    # Get project
-    @p = Project.find_by_id(params[:autofill][:project_id])
-    
-    # Get customer
-    @customer = Customer.find_by_id(@p.customer_id) # Customer plugin only has a 1-way relationship
-    
-    # Build date range
-    @date_from = params[:autofill][:date_from]
-    @date_to = params[:autofill][:date_to]
-    
-    # Build activities
-    if params[:autofill][:activities]
-      @activities =  params[:autofill][:activities].collect {|p| p.to_i }
-    end
-    
-    @activities ||= []
-    
-    # Fetch issues
-    @issues = @p.issues.find(:all,
-                                  :conditions => ['time_entries.spent_on >= :from AND time_entries.spent_on <= :to AND time_entries.activity_id IN (:activities)',
-                                                  {
-                                                    :from => @date_from,
-                                                    :to => @date_to,
-                                                    :activities => @activities
-                                                  }],
-                                  :include => [:time_entries])
-    
-    @total_time = @issues.collect(&:time_entries).flatten.collect(&:hours).sum
-    
-    # Time logged without an issue
-    @time_entries = @p.time_entries.find(:all,
-                                         :conditions => ['issue_id IS NULL AND spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities)',
-                                                  {
-                                                    :from => @date_from,
-                                                    :to => @date_to,
-                                                    :activities => @activities
-                                                  }])
+    @autofill = Autofill.new_from_params(params[:autofill])
 
-    @total_time += @time_entries.collect(&:hours).sum
+    # TODO: should just access @autofill directly
+    @p = @autofill.p
+    @customer = @autofill.customer
+    @date_from = @autofill.date_from
+    @date_to = @autofill.date_to
+    @activities = @autofill.activities
+    @issues = @autofill.issues
+    @total_time = @autofill.total_time
+    @time_entries = @autofill.time_entries
+    @total = @autofill.total
     
-    @total = @total_time.to_f * params[:autofill][:rate].to_f
-
     respond_to do |format|
       format.js
     end
