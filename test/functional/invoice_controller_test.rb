@@ -17,15 +17,7 @@ class InvoiceControllerTest < ActionController::TestCase
       :id => @project.id
     end
 
-    should_assign_to(:p) {@project}
-    should_assign_to(:customer) {@customer}
-    should_assign_to :date_from
-    should_assign_to :date_to
-    should_assign_to :activities
-    should_assign_to :issues
-    should_assign_to :total_time
-    should_assign_to :time_entries
-    should_assign_to :total
+    should_assign_to :autofill
 
     should_respond_with :success
     should_render_template :autofill

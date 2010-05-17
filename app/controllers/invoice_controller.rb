@@ -65,17 +65,6 @@ class InvoiceController < ApplicationController
   def autofill
     @autofill = Autofill.new_from_params(params[:autofill])
 
-    # TODO: should just access @autofill directly
-    @p = @autofill.p
-    @customer = @autofill.customer
-    @date_from = @autofill.date_from
-    @date_to = @autofill.date_to
-    @activities = @autofill.activities
-    @issues = @autofill.issues
-    @total_time = @autofill.total_time
-    @time_entries = @autofill.time_entries
-    @total = @autofill.total
-    
     respond_to do |format|
       format.js
     end

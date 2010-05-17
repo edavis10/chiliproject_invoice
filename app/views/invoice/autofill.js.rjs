@@ -1,28 +1,28 @@
-page['invoice_amount'].value = @total
-page['invoice_project_id'].value = @p.id
+page['invoice_amount'].value = @autofill.total
+page['invoice_project_id'].value = @autofill.p.id
 
 # Invoice description
 description = ''
-description << "h3. " + h(@p.name) + "\n\n"
-description << h(@p.description) + "\n\n"
+description << "h3. " + h(@autofill.p.name) + "\n\n"
+description << h(@autofill.p.description) + "\n\n"
 description << "h3. Work Completed\n\n"
 
-@issues.each do |issue|
+@autofill.issues.each do |issue|
   description << "* #{issue.subject} (#{issue.status} ##{issue.id})\n"
 end
 
 # Total time
 description << "\n"
-description << "Total billable time: " + pluralize(@total_time, "hour")
+description << "Total billable time: " + pluralize(@autofill.total_time, "hour")
 
-description << " (" + h(@date_from) + " to " + h(@date_to) + ")"
+description << " (" + h(@autofill.date_from) + " to " + h(@autofill.date_to) + ")"
 
 page['invoice_description'].value = description
 
 # Customer
-if @customer.blank?
+if @autofill.customer.blank?
   page.alert l(:label_no_customer_on_project)
 else
-  page['invoice_customer_id'].value = @customer.id
-  page.replace_html 'customer_name', h(@customer.name)
+  page['invoice_customer_id'].value = @autofill.customer.id
+  page.replace_html 'customer_name', h(@autofill.customer.name)
 end
