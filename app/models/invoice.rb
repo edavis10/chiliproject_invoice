@@ -48,11 +48,13 @@ class Invoice < ActiveRecord::Base
     (total = amount - payments.sum('amount')) > 0 ? total : 0.0
   end
 
-  generator_for :invoice_number, :start => '10000' do |prev|
-    prev.succ
-  end
+  if Rails.env.test?
+    generator_for :invoice_number, :start => '10000' do |prev|
+      prev.succ
+    end
 
-  generator_for :amount => 100.0
-  generator_for :description => 'This is your test invoice.'
-  generator_for :due_date => 1.month.from_now
+    generator_for :amount => 100.0
+    generator_for :description => 'This is your test invoice.'
+    generator_for :due_date => 1.month.from_now
+  end
 end
