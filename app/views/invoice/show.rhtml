@@ -36,7 +36,7 @@ end %>
 
   <div id="invoice-meta">
     <p id="invoice-number"><%= l(:field_invoice) %> #<%= h @invoice.invoice_number -%></p>
-    <p class="date"><%= l(:field_invoiced_on) %>: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') %></p>
+    <p class="date"><%= l(:field_invoiced_on) %>: <%= h @invoice.invoiced_on.strftime('%B %d, %Y') if @invoice.invoiced_on.present? %></p>
     <p class="date"><%= l(:field_due_date) %>: <%= @invoice.due_date.strftime('%B %d, %Y') %></p>
   </div>
 
