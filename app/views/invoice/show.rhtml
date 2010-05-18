@@ -3,8 +3,8 @@
 <% end %>
 
 <%= invoice_menu(@invoice) do |menu|
-  menu << link_to(l(:label_printable_view), {:action => 'show', :id => @project, :invoice => { :id => @invoice }, :print => true}, :class => 'icon icon-invoice-print')
-  menu << link_to(l(:label_edit_invoice), {:action => 'edit', :id => @project, :invoice => { :id => @invoice }}, :class => 'icon icon-edit')
+  menu << link_to(l(:label_printable_view), invoice_path(@invoice, :print => true), :class => 'icon icon-invoice-print')
+  menu << link_to(l(:label_edit_invoice), edit_invoice_path(@invoice), :class => 'icon icon-edit')
 end %>
 
 <%= invoice_status(@invoice) %>

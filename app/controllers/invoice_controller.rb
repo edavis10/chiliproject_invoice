@@ -36,9 +36,9 @@ class InvoiceController < ApplicationController
     @invoice = Invoice.new(params[:invoice])
     if @invoice.save
       flash[:notice] = "Invoice created"
-      redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
+      redirect_to invoice_path(@invoice)
     else
-      render :action => 'new', :id => params[:id]
+      render :action => 'new'
     end    
       
   end
@@ -46,19 +46,19 @@ class InvoiceController < ApplicationController
   def update
     if @invoice.update_attributes(params[:invoice])
       flash[:notice] = "Invoice saved"
-      redirect_to :action => "show", :id => params[:id], :invoice => { :id => @invoice }
+      redirect_to invoice_path(@invoice)
     else
-      render :action => 'edit', :id => params[:id], :invoice => { :id => @invoice }
+      render :action => 'edit'
     end    
   end
   
   def destroy
     if @invoice.destroy
       flash[:notice] = "Invoice deleted"
-      redirect_to :action => "index", :id => params[:id]
+      redirect_to invoice_index_path
     else
       flash[:notice] = "Error"
-      render :action => 'index', :id => params[:id]
+      redirect_to invoice_index_path
     end
   end
   

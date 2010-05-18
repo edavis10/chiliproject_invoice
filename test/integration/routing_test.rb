@@ -2,18 +2,20 @@ require "#{File.dirname(__FILE__)}/../test_helper"
 
 class RoutingTest < ActionController::IntegrationTest
   context "invoices" do
-    should_route :get, "/invoice/index/name", :controller => 'invoice', :action => 'index', :id => 'name'
-    should_route :get, "/invoice/new/name", :controller => 'invoice', :action => 'new', :id => 'name'
-    should_route :get, "/invoice/autocreate/name", :controller => 'invoice', :action => 'autocreate', :id => 'name'
-    should_route :get, "/invoice/show/name", :controller => 'invoice', :action => 'show', :id => 'name'
-    should_route :get, "/invoice/edit/name", :controller => 'invoice', :action => 'edit', :id => 'name'
-    should_route :get, "/invoice/autofill/name", :controller => 'invoice', :action => 'autofill', :id => 'name'
-    should_route :get, "/invoice/outstanding/name", :controller => 'invoice', :action => 'outstanding', :id => 'name'
+    should_route :get, "/invoice", :controller => 'invoice', :action => 'index'
+    should_route :get, "/invoice/new", :controller => 'invoice', :action => 'new'
+    should_route :get, "/invoice/autocreate", :controller => 'invoice', :action => 'autocreate'
+    should_route :get, "/invoice/100", :controller => 'invoice', :action => 'show', :id => '100'
+    should_route :get, "/invoice/100/edit", :controller => 'invoice', :action => 'edit', :id => '100'
+    should_route :get, "/invoice/autofill", :controller => 'invoice', :action => 'autofill'
+    should_route :get, "/invoice/100/outstanding", :controller => 'invoice', :action => 'outstanding', :id => '100'
 
 
-    should_route :post, "/invoice/create/name", :controller => 'invoice', :action => 'create', :id => 'name'
-    should_route :post, "/invoice/update/name", :controller => 'invoice', :action => 'update', :id => 'name'
-    should_route :post, "/invoice/destroy/name", :controller => 'invoice', :action => 'destroy', :id => 'name'
+    should_route :post, "/invoice", :controller => 'invoice', :action => 'create'
+
+    should_route :put, "/invoice/100", :controller => 'invoice', :action => 'update', :id => '100'
+
+    should_route :delete, "/invoice/100", :controller => 'invoice', :action => 'destroy', :id => '100'
   end
 
 end
