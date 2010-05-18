@@ -3,7 +3,7 @@
     <%= link_to h(row.invoice_number), :action => 'show', :id => @project, :invoice => { :id => row } %>
   </td>
   <td>
-    <%= h row.invoiced_on.strftime('%B %d, %Y') %>
+    <%= h(row.invoiced_on.strftime('%B %d, %Y')) if row.invoiced_on.present? %>
   </td>
   <td>
     <%= h row.customer.company %> - <%= h row.customer.name %>
