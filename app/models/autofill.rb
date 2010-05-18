@@ -20,7 +20,8 @@ class Autofill
 
   def self.new_from_params(params)
     autofill = Autofill.new
-
+    return autofill if params.blank?
+    
     # Get project
     autofill.p = Project.find_by_id(params[:project_id])
     
