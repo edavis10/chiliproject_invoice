@@ -32,16 +32,15 @@ Redmine::Plugin.register :invoice_plugin do
     'invoice_default_rate' => '50'
   }, :partial => 'settings/invoice_settings'
   
-  project_module :invoice_module do
-    permission :show_invoices, { :invoice => [:index, :show]}
-    permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :autofill]}
-    permission :delete_invoices, { :invoice => [:destroy]}
+  permission :show_invoices, { :invoice => [:index, :show]}
+  permission :edit_invoices, { :invoice => [:new, :edit, :autocreate, :create, :update, :autofill]}
+  permission :delete_invoices, { :invoice => [:destroy]}
 
-    permission :pay_invoices, { :payments => [:new, :create], :invoice => [:outstanding]}
-    
-  end
+  permission :pay_invoices, { :payments => [:new, :create], :invoice => [:outstanding]}
   
-  menu :project_menu, "Invoices", :controller => 'invoice', :action => 'index'
+  menu :top_menu, "Invoices", {:controller => 'invoice', :action => 'index'}, :if => Proc.new {
+    User.current.allowed_to?(:show_invoices, nil, :global => true)
+  }
 end
 
 begin

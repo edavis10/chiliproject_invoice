@@ -5,7 +5,7 @@
 
 <h1>New Payment</h1>
 
-<% labelled_tabular_form_for(:payment, @payment, :url => { :action => 'create', :id => @project}) do |form| %>
+<% labelled_tabular_form_for(:payment, @payment, :url => { :action => 'create'}) do |form| %>
 <fieldset>
 <legend>Payment</legend>
 <%= error_messages_for 'payment' %>
@@ -13,7 +13,7 @@
 <p>
   <%= form.select :invoice_id, Invoice.find(:all).collect { |i| ["##{i.invoice_number}", i.id]}, {}, 
   { :onchange => "new Ajax.Request('#{url_for :action => 'load_assigned_issues'}', { parameters: { invoice_id: $F(this) } } )" }  %>
-  <%= observe_field 'payment_invoice_id', :url => { :controller => 'invoice', :action => 'outstanding', :id => @project.id },
+  <%= observe_field 'payment_invoice_id', :url => { :controller => 'invoice', :action => 'outstanding' },
     :with => "invoice_id",
   :update => 'outstanding'  %>
 </p>

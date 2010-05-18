@@ -1,7 +1,7 @@
 class InvoiceController < ApplicationController
   unloadable
   layout 'base'
-  before_filter :find_project, :authorize, :get_settings
+  before_filter :authorize_global, :get_settings
   before_filter :find_invoice, :only => [:show, :edit, :update, :destroy]
 
   helper :invoices
@@ -71,17 +71,15 @@ class InvoiceController < ApplicationController
   end
   
   def outstanding
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find_by_id(params[:invoice_id])
+    @invoice ||= Invoice.find_by_id(params[:id])
     render :text => @invoice.outstanding
   end
 
-    private
-  def find_project
-    @project = Project.find(params[:id])
-  end
-
+  private
   def find_invoice
-    @invoice = Invoice.find(params[:invoice][:id])
+    @invoice = Invoice.find(params[:invoice][:id]) if params[:invoice]
+    @invoice ||= Invoice.find(params[:id])
   end
   
   def get_settings

@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   unloadable
   layout 'base'
-  before_filter :find_project, :authorize, :get_settings
+  before_filter :authorize_global, :get_settings
 
   helper :invoices
 
@@ -21,10 +21,6 @@ class PaymentsController < ApplicationController
   end
   
   private
-  def find_project
-    @project = Project.find(params[:id])
-  end
-  
   def get_settings
     @settings = Setting.plugin_invoice_plugin
   end

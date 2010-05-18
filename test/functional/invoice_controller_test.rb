@@ -13,8 +13,7 @@ class InvoiceControllerTest < ActionController::TestCase
         :project_id => @project.id,
         :date_from => '2010-01-01',
         :date_to => '2010-02-01'
-      },
-      :id => @project.id
+      }
     end
 
     should_assign_to :autofill
