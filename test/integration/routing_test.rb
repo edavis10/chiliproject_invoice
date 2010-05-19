@@ -18,4 +18,10 @@ class RoutingTest < ActionController::IntegrationTest
     should_route :delete, "/invoice/100", :controller => 'invoice', :action => 'destroy', :id => '100'
   end
 
+  context "payments" do
+    should_route :get, "/payments/new", :controller => 'payments', :action => 'new'
+    
+    should_route :post, "/payments/create", :controller => 'payments', :action => 'create'
+  end
+
 end
