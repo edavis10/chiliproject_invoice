@@ -6,5 +6,10 @@ ActionController::Routing::Routes.draw do |map|
                 },
                 :member => {
                   :outstanding => :get
-                })
+                },
+                :shallow => true) do |invoice|
+    invoice.resources :payments, :only => [:new, :create]
+  end
+
+  map.resources :payments, :only => [:new, :create]
 end

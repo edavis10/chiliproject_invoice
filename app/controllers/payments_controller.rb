@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
   helper :invoices
 
   def new
-    @payment = Payment.new(params[:payment])
+    @payment = Payment.new(payment_params)
   end
   
   def create
@@ -23,6 +23,13 @@ class PaymentsController < ApplicationController
   private
   def get_settings
     @settings = Setting.plugin_invoice_plugin
+  end
+
+  def payment_params
+    routing_params = {:invoice_id => params[:invoice_id]}
+    standard_params = params[:payment] || {}
+
+    routing_params.merge(standard_params)
   end
   
 end

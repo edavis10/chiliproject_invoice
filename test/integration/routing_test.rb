@@ -21,7 +21,11 @@ class RoutingTest < ActionController::IntegrationTest
   context "payments" do
     should_route :get, "/payments/new", :controller => 'payments', :action => 'new'
     
-    should_route :post, "/payments/create", :controller => 'payments', :action => 'create'
+    should_route :post, "/payments", :controller => 'payments', :action => 'create'
+    
+    should_route :get, "/invoice/100/payments/new", :controller => 'payments', :action => 'new', :invoice_id => '100'
+    
+    should_route :post, "/invoice/100/payments", :controller => 'payments', :action => 'create', :invoice_id => '100'
   end
 
 end

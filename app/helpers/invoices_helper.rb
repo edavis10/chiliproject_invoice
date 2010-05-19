@@ -32,10 +32,10 @@ module InvoicesHelper
     menu_items << link_to(l(:label_new_invoice), new_invoice_path, :class => 'icon icon-invoice-new') 
     menu_items << link_to(l(:label_new_autofilled_invoice), autocreate_invoice_path, :class => 'icon icon-invoice-new') 
 
-    if invoice.nil? 
-      menu_items << link_to(l(:label_new_payment), { :controller => 'payments', :action => 'new', :id => @project}, :class => 'icon icon-payment-new') 
+    if invoice.nil?
+      menu_items << link_to(l(:label_new_payment),  new_payment_path, :class => 'icon icon-payment-new') 
     else 
-      menu_items << link_to(l(:label_new_payment), { :controller => 'payments', :action => 'new', :id => @project, :payment => { :invoice_id => invoice.id}}, :class => 'icon icon-payment-new') 
+      menu_items << link_to(l(:label_new_payment), new_invoice_payment_path(invoice), :class => 'icon icon-payment-new') 
     end
 
     yield menu_items if block_given?
