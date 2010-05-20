@@ -48,6 +48,16 @@ class Invoice < ActiveRecord::Base
     (total = amount - payments.sum('amount')) > 0 ? total : 0.0
   end
 
+  def self.last_invoice_number
+    last_invoice = first(:order => 'id DESC')
+    if last_invoice.present?
+      last_invoice.invoice_number
+    else
+      '-'
+    end
+
+  end
+
   if Rails.env.test?
     generator_for :invoice_number, :start => '10000' do |prev|
       prev.succ
