@@ -4,6 +4,7 @@ class InvoiceController < ApplicationController
   before_filter :authorize_global, :get_settings
   before_filter :find_invoice, :only => [:show, :edit, :update, :destroy]
   before_filter :default_invoice, :only => [:new, :autocreate]
+  before_filter :last_invoice_number, :only => [:new, :autocreate, :edit]
   
   helper :invoices
   
@@ -14,12 +15,10 @@ class InvoiceController < ApplicationController
   end
 
   def new
-    @last_number = Invoice.last_invoice_number
   end
 
   def autocreate
     @autofill = Autofill.new
-    @last_number = Invoice.last_invoice_number
   end
 
   def show
@@ -28,7 +27,6 @@ class InvoiceController < ApplicationController
   end
   
   def edit
-    @last_number = Invoice.last_invoice_number
   end
   
   def create
@@ -88,6 +86,9 @@ class InvoiceController < ApplicationController
   def default_invoice
     @invoice = Invoice.default
   end
-  
+
+  def last_invoice_number
+    @last_number = Invoice.last_invoice_number
+  end
 
 end
