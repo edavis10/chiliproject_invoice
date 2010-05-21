@@ -3,7 +3,8 @@ class InvoiceController < ApplicationController
   layout 'base'
   before_filter :authorize_global, :get_settings
   before_filter :find_invoice, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :default_invoice, :only => [:new, :autocreate]
+  
   helper :invoices
   
   def index
@@ -13,12 +14,10 @@ class InvoiceController < ApplicationController
   end
 
   def new
-    @invoice = Invoice.default
     @last_number = Invoice.last_invoice_number
   end
 
   def autocreate
-    @invoice = Invoice.default
     @autofill = Autofill.new
     @last_number = Invoice.last_invoice_number
   end
@@ -85,4 +84,10 @@ class InvoiceController < ApplicationController
   def get_settings
     @settings = Setting.plugin_invoice_plugin
   end
+
+  def default_invoice
+    @invoice = Invoice.default
+  end
+  
+
 end
