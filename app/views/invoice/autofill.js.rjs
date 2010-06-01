@@ -1,10 +1,10 @@
 page['invoice_amount'].value = @autofill.total
-page['invoice_project_id'].value = @autofill.p.id if @autofill.p.present?
+page['invoice_project_id'].value = @autofill.project.id if @autofill.project.present?
 
 # Invoice description
 description = ''
-description << "h3. " + h(@autofill.p.try(:name)) + "\n\n"
-description << h(@autofill.p.try(:description)) + "\n\n"
+description << "h3. " + h(@autofill.project.try(:name)) + "\n\n"
+description << h(@autofill.project.try(:description)) + "\n\n"
 description << "h3. Work Completed\n\n"
 
 @autofill.issues.each do |issue|

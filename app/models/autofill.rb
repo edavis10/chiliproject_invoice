@@ -6,7 +6,7 @@ class Autofill
   attr_accessor :date_to
   attr_accessor :activities
   attr_accessor :rate
-  attr_accessor :p # TODO: project
+  attr_accessor :project
   attr_accessor :customer
   attr_accessor :issues
   attr_accessor :total_time
@@ -23,10 +23,10 @@ class Autofill
     return autofill if params.blank?
     
     # Get project
-    autofill.p = Project.find_by_id(params[:project_id])
+    autofill.project = Project.find_by_id(params[:project_id])
     
     # Get customer
-    autofill.customer = Customer.find_by_id(autofill.p.customer_id) # Customer plugin only has a 1-way relationship
+    autofill.customer = Customer.find_by_id(autofill.project.customer_id) # Customer plugin only has a 1-way relationship
     
     # Build date range
     autofill.date_from = params[:date_from]
@@ -40,7 +40,7 @@ class Autofill
     autofill.activities ||= []
     
     # Fetch issues
-    autofill.issues = autofill.p.issues.find(:all,
+    autofill.issues = autofill.project.issues.find(:all,
                                   :conditions => ['time_entries.spent_on >= :from AND time_entries.spent_on <= :to AND time_entries.activity_id IN (:activities)',
                                                   {
                                                     :from => autofill.date_from,
@@ -52,7 +52,7 @@ class Autofill
     autofill.total_time = autofill.issues.collect(&:time_entries).flatten.collect(&:hours).sum
     
     # Time logged without an issue
-    autofill.time_entries = autofill.p.time_entries.find(:all,
+    autofill.time_entries = autofill.project.time_entries.find(:all,
                                          :conditions => ['issue_id IS NULL AND spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities)',
                                                   {
                                                     :from => autofill.date_from,
