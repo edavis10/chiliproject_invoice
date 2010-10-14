@@ -1,0 +1,36 @@
+<fieldset id="invoice">
+<legend><%= l(:label_invoice) %></legend>
+<%= error_messages_for 'invoice' %>
+
+<p>
+  <%= form_autocreate.text_field :invoice_number %> (<%= l(:label_last_number) %> #<%= @last_number %>)
+</p>
+
+<p>
+  <%= form_autocreate.select :customer_id, Customer.find(:all).collect { |c| ["#{c.company} - #{c.name}", c.id]} %>
+</p>
+
+<p>
+  <%= form_autocreate.select :project_id, Project.find(:all, :order => 'name ASC').collect { |p| [h(p.name), p.id]}, { :include_blank => true} %>
+</p>
+
+<p>
+  <%= form_autocreate.text_field :invoiced_on, :size => 10 %><%= calendar_for('invoice_invoiced_on') %>
+</p>
+
+<p>
+  <%= form_autocreate.text_field :due_date, :size => 10 %><%= calendar_for('invoice_due_date') %>
+</p>
+  
+<p>
+  <%= form_autocreate.text_field :amount, :readonly => true %>
+</p>
+
+<p>
+  <%= form_autocreate.text_area :description, :cols => 60 %>
+  <%= wikitoolbar_for 'invoice_description' %>
+</p>
+
+</fieldset>
+
+<%= drop_receiving_element :invoice, :hoverclass => 'hover', :url => {:action => 'autofill'}, :with => "Form.serialize($$('.tabular')[0]) + '&autofill[generate_invoice]=1'" %>  
