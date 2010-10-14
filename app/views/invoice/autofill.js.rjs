@@ -1,3 +1,13 @@
+if not @autofill.generate_invoice
+  page.replace_html 'autofill_time_entries', ''
+  @autofill.all_time_entries.each do |time_entry|
+    item_html = ''
+    item_html << check_box_tag('autofill[time_entries][]', time_entry.id, nil, :id => "autofill_time_entries_#{time_entry.id}")
+    item_html << label_tag("autofill_time_entries_#{time_entry.id}", "#{time_entry.hours} - #{time_entry.comments}", {:class => 'inline'})
+    page.insert_html :bottom, 'autofill_time_entries', content_tag("li", item_html)
+  end if @autofill.all_time_entries.present?
+end
+
 page['invoice_amount'].value = @autofill.total
 page['invoice_project_id'].value = @autofill.project.id if @autofill.project.present?
 

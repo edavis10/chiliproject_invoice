@@ -9,7 +9,7 @@ field_invoice: Invoice
 field_invoice_number: Invoice number
 field_invoiced_on: Invoice Date
 field_note: Payment note
-field_rate: Hourly Rate
+field_rate: Default Hourly Rate
 label_auto_fill: Auto Fill
 label_bill_to: "Bill To:"
 label_closed_invoices: Closed Invoices
