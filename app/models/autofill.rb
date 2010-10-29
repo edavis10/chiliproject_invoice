@@ -11,6 +11,7 @@ class Autofill
   attr_accessor :issues
   attr_accessor :total_time
   attr_accessor :time_entries
+  attr_accessor :invoiced_time_entries
   attr_accessor :all_time_entries
   attr_accessor :generate_invoice
   attr_accessor :total
@@ -41,33 +42,16 @@ class Autofill
     
     autofill.activities ||= []
     
-    # Fetch issues
-#    autofill.issues = autofill.project.issues.find(:all,
-#                                  :conditions => ['time_entries.spent_on >= :from AND time_entries.spent_on <= :to AND time_entries.activity_id IN (:activities)',
-#                                                  {
-#                                                    :from => autofill.date_from,
-#                                                    :to => autofill.date_to,
-#                                                    :activities => autofill.activities
-#                                                  }],
-#                                  :include => [:time_entries])
+    autofill.invoiced_time_entries = InvoiceTimeEntry.find(:all).collect { |p| p.time_entry_id }
     
-#    autofill.total_time = autofill.issues.collect(&:time_entries).flatten.collect(&:hours).sum
-    
-    # Time logged without an issue
-#    autofill.time_entries = autofill.project.time_entries.find(:all,
-#                                         :conditions => ['issue_id IS NULL AND spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities)',
-#                                                  {
-#                                                    :from => autofill.date_from,
-#                                                    :to => autofill.date_to,
-#                                                    :activities => autofill.activities
-#                                                  }])
     # Time enteries
     autofill.all_time_entries = autofill.project.time_entries.find(:all,
-                                         :conditions => ['spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities)',
+                                         :conditions => ['spent_on >= :from AND spent_on <= :to AND activity_id IN (:activities) AND id NOT IN (:invoiced_time_entries)',
                                                   {
                                                     :from => autofill.date_from,
                                                     :to => autofill.date_to,
-                                                    :activities => autofill.activities
+                                                    :activities => autofill.activities,
+                                                    :invoiced_time_entries => autofill.invoiced_time_entries
                                                   }])
 
 

@@ -31,6 +31,8 @@
   <%= wikitoolbar_for 'invoice_description' %>
 </p>
 
+<p id="invoice_time_entries"></p>
+
 </fieldset>
 
 <%= drop_receiving_element :invoice, :hoverclass => 'hover', :url => {:action => 'autofill'}, :with => "Form.serialize($$('.tabular')[0]) + '&autofill[generate_invoice]=1'" %>  

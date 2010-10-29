@@ -6,6 +6,11 @@ if not @autofill.generate_invoice
     item_html << label_tag("autofill_time_entries_#{time_entry.id}", "#{time_entry.hours} - #{time_entry.comments}", {:class => 'inline'})
     page.insert_html :bottom, 'autofill_time_entries', content_tag("li", item_html)
   end if @autofill.all_time_entries.present?
+else
+  page.replace_html 'invoice_time_entries', ''
+  @autofill.time_entries.each do |time_entry|
+    page.insert_html :bottom, 'invoice_time_entries', hidden_field_tag('invoice_time_entries[]', time_entry.id)
+  end if @autofill.time_entries.present?
 end
 
 page['invoice_amount'].value = @autofill.total
@@ -16,10 +21,6 @@ description = ''
 description << "h3. " + h(@autofill.project.try(:name)) + "\n\n"
 description << h(@autofill.project.try(:description)) + "\n\n"
 description << "h3. Work Completed\n\n"
-
-@autofill.issues.each do |issue|
-  description << "* #{issue.subject} (#{issue.status} ##{issue.id})\n"
-end if @autofill.issues.present?
 
 # Total time
 description << "\n"

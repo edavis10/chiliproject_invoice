@@ -23,6 +23,7 @@ en:
   label_new_invoice: New Invoice
   label_new_payment: New Payment
   label_no_customer_on_project: "That project does not have a customer, please set one before continuing"
+  label_notes: "Notes"
   label_open_invoices: Open Invoices
   label_paid_invoice: Invoice Paid
   label_payments: Payments

@@ -2,6 +2,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :customer  
   belongs_to :project
   has_many :payments
+  has_many :invoice_time_entries
   before_save :textilize
   
   validates_presence_of :invoice_number, :customer, :amount, :description

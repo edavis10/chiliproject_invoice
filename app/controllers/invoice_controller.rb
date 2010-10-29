@@ -23,6 +23,7 @@ class InvoiceController < ApplicationController
 
   def show
     @payments = @invoice.payments.find(:all, :order => 'applied_on DESC')
+    @time_entries = @invoice.invoice_time_entries.find(:all)
     render :layout => 'print' if params[:print]
   end
   
@@ -32,6 +33,10 @@ class InvoiceController < ApplicationController
   def create
     @invoice = Invoice.new(params[:invoice])
     if @invoice.save
+      params[:invoice_time_entries].each do |time_entry|
+        @ite = InvoiceTimeEntry.new(:invoice_id => @invoice.id, :time_entry_id => time_entry)
+        @ite.save
+      end
       flash[:notice] = "Invoice created"
       redirect_to invoice_path(@invoice)
     else
