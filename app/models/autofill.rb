@@ -43,6 +43,7 @@ class Autofill
     autofill.activities ||= []
     
     autofill.invoiced_time_entries = InvoiceTimeEntry.find(:all).collect { |p| p.time_entry_id }
+    autofill.invoiced_time_entries = [-1] if autofill.invoiced_time_entries.nil? or autofill.invoiced_time_entries.empty?
     
     # Time enteries
     autofill.all_time_entries = autofill.project.time_entries.find(:all,
