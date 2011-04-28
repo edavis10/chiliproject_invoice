@@ -1,6 +1,6 @@
-= Redmine Invoice plugin
+= ChiliProject Invoice plugin
 
-The Redmine Invoice plugin allows a user to create invoices for Customers using Redmine's time entries.
+The ChiliProject Invoice plugin allows a user to create invoices for Customers using ChiliProject's time entries.
 
 == Features
 
@@ -17,12 +17,12 @@ A copy of the plugin can be downloaded from {Little Stream Software}[https://pro
 
 == Install
 
-1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
+1. Follow the ChiliProject plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
 2. Install the Customers plugin to 'vendor/plugins/customer_plugin' - https://projects.littlestreamsoftware.com/projects/show/redmine-customers
-3. Install the Invoice plugin to 'vendor/plugin/invoice_plugin'
+3. Install the Invoice plugin to 'vendor/plugin/chiliproject_invoice'
 4. Run the plugin migrations +rake db:migrate_plugins+
-5. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
-5. Login to your Redmine install as an Administrator
+5. Restart your ChiliProject web servers (e.g. mongrel, thin, mod_rails)
+5. Login to your ChiliProject install as an Administrator
 6. Setup the permissions for your roles
 7. Configure your site specific settings in the Plugin administration panel
 8. Add the "Invoice module" to the enabled modules for your project
@@ -40,7 +40,7 @@ Create a new invoice using the "New Autofilled Invoice" link.  This will let you
 
 === Print an invoice
 
-While viewing an invoice, click the "Printable view".  This will remove the Redmine styling and allow the invoice to be printed to a printer or a PDF generated using a PDF printer.
+While viewing an invoice, click the "Printable view".  This will remove the ChiliProject styling and allow the invoice to be printed to a printer or a PDF generated using a PDF printer.
 
 === Payments
 

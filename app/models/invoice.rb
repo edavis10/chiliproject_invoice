@@ -8,7 +8,7 @@ class Invoice < ActiveRecord::Base
   validates_uniqueness_of :invoice_number
 
   def self.default
-    return Invoice.new({ :due_date => Date.today + Setting.plugin_invoice_plugin['invoice_payment_terms'].to_i.days })
+    return Invoice.new({ :due_date => Date.today + Setting.plugin_chiliproject_invoice['invoice_payment_terms'].to_i.days })
   end
   
   def self.open

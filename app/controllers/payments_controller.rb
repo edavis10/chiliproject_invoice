@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
   
   private
   def get_settings
-    @settings = Setting.plugin_invoice_plugin
+    @settings = Setting.plugin_chiliproject_invoice
   end
 
   def payment_params

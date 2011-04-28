@@ -5,7 +5,7 @@ class AddDueDateToInvoices < ActiveRecord::Migration
     
     Invoice.reset_column_information
     
-    terms = Setting.plugin_invoice_plugin['invoice_payment_terms'].to_i || 30
+    terms = Setting.plugin_chiliproject_invoice['invoice_payment_terms'].to_i || 30
     
     Invoice.find(:all).each do |invoice|
       invoice.update_attribute(:due_date, invoice.invoiced_on + terms.days)

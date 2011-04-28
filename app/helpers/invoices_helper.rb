@@ -46,7 +46,7 @@ module InvoicesHelper
   end
 
   def header_tags
-    return stylesheet_link_tag("invoice.css", :plugin => "invoice_plugin", :media => 'all') +
-      stylesheet_link_tag("invoice_print.css", :plugin => "invoice_plugin", :media => 'print')
+    return stylesheet_link_tag("invoice.css", :plugin => "chiliproject_invoice", :media => 'all') +
+      stylesheet_link_tag("invoice_print.css", :plugin => "chiliproject_invoice", :media => 'print')
   end
 end
