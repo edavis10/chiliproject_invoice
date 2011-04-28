@@ -14,8 +14,10 @@ end
 Redmine::Plugin.register :chiliproject_invoice do
   name 'Invoice'
   author 'Eric Davis'
-  description 'Redmine plugin to create and manage invoices'
+  description 'Plugin to create and manage invoices'
   version '0.0.1'
+  url 'https://projects.littlestreamsoftware.com/projects/chiliproject_invoice'
+  author_url 'http://www.littlestreamsoftware.com'
 
   settings:default => {
     'invoice_company_name' => 'Your Company Name',
