@@ -2,6 +2,8 @@
 
 The ChiliProject Invoice plugin allows a user to create invoices for Customers using ChiliProject's time entries.
 
+This plugin is still in early development but has already been creating invoices for {Little Stream Software}[http://www.littlestreamsoftware.com] since 2008.
+
 == Features
 
 * Listing of current, old, and late invoice
@@ -13,15 +15,14 @@ The ChiliProject Invoice plugin allows a user to create invoices for Customers u
 
 == Getting the plugin
 
-A copy of the plugin can be downloaded from {Little Stream Software}[https://projects.littlestreamsoftware.com/projects/list_files/redmine-invoices] or from {GitHub}[http://github.com/edavis10/redmine-invoice-plugin/tree/master]
+A copy of the plugin can be downloaded from {Little Stream Software}[https://projects.littlestreamsoftware.com/projects/chiliproject_invoice/files] or from {GitHub}[http://github.com/edavis10/chiliproject_invoice]
 
 == Install
 
-1. Follow the ChiliProject plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
-2. Install the Customers plugin to 'vendor/plugins/customer_plugin' - https://projects.littlestreamsoftware.com/projects/show/redmine-customers
-3. Install the Invoice plugin to 'vendor/plugin/chiliproject_invoice'
-4. Run the plugin migrations +rake db:migrate_plugins+
-5. Restart your ChiliProject web servers (e.g. mongrel, thin, mod_rails)
+1. Install the Customers plugin to 'vendor/plugins/customer_plugin' - https://projects.littlestreamsoftware.com/projects/show/redmine-customers
+2. Install the Invoice plugin to 'vendor/plugin/chiliproject_invoice'
+3. Run the plugin migrations +rake db:migrate_plugins+
+4. Restart your ChiliProject web servers (e.g. mongrel, thin, mod_rails)
 5. Login to your ChiliProject install as an Administrator
 6. Setup the permissions for your roles
 7. Configure your site specific settings in the Plugin administration panel
@@ -52,5 +53,5 @@ This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for
 
 == Help
 
-If you need help you can contact the maintainer at his email address (See CREDITS) or create an issue in the {Bug Tracker}:[https://projects.littlestreamsoftware.com/projects/show/redmine-invoices]
+If you need help you can contact the maintainer at his email address (See CREDITS) or create an issue in the {Bug Tracker}:[https://projects.littlestreamsoftware.com/projects/chiliproject_invoice]
 
